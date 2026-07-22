@@ -1,0 +1,55 @@
+# Sudhum Children Academy — Apache / LiteSpeed config
+# Upload this to the site root (public_html).
+
+# ------------------------------------------------------------
+# Clean URLs — send /admissions, /faculty and so on to index.html.
+# This is what makes CONFIG.cleanUrls = true work.
+# If the host has no mod_rewrite, set cleanUrls:false in index.html
+# and the site keeps working with #/admissions instead.
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # leave real files and folders alone
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # everything else goes to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ------------------------------------------------------------
+# Compression
+# ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ------------------------------------------------------------
+# Caching — images and fonts for a long time, HTML never
+# (caching HTML would leave visitors looking at stale notices)
+# ------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png        "access plus 1 year"
+  ExpiresByType image/jpeg       "access plus 1 year"
+  ExpiresByType image/webp       "access plus 1 year"
+  ExpiresByType image/svg+xml    "access plus 1 year"
+  ExpiresByType text/css         "access plus 1 month"
+  ExpiresByType application/pdf  "access plus 1 week"
+  ExpiresByType text/html        "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+ErrorDocument 404 /index.html

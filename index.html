@@ -1,0 +1,2531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudhum Children Academy &amp; Science College, Rustam — Admissions &amp; Entry Test</title>
+<meta name="description" content="Sudhum Children Academy &amp; Science College, Rustam (Mardan, Khyber Pakhtunkhwa). Pre-Primary to F.Sc. Established 1996. Online admission application and entry test registration.">
+<meta name="theme-color" content="#294A70">
+<link rel="canonical" href="https://sudhum.edu.pk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sudhum Children Academy &amp; Science College Rustam">
+<meta property="og:title" content="Sudhum Children Academy &amp; Science College, Rustam">
+<meta property="og:description" content="Pre-Primary to F.Sc in Rustam, Mardan. Established 1996. Apply online for admission or register for the entry test.">
+<meta property="og:url" content="https://sudhum.edu.pk/">
+<meta property="og:image" content="https://sudhum.edu.pk/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@sudhumsca">
+<link rel="icon" href="assets/logo.png">
+
+<!-- The office's data lives in the head so that CONFIG exists while the
+     body is still being parsed. The hero needs it before the first
+     paint, otherwise the page visibly changes after JavaScript runs. -->
+<script>
+/* ============================================================
+   EDIT THIS BLOCK — everything the office needs to change
+   ============================================================ */
+const CONFIG = {
+  // NOTE: all three Rustam numbers are landlines, so WhatsApp will not
+  // work on them. Put the office MOBILE here: 92 + number without the 0.
+  officeWhatsApp : "923429035865",
+  officeEmail    : "sudhumsca@gmail.com",
+  logo           : "assets/logo.png",
+
+  // The large photograph on the home page. Landscape, 1600px wide or
+  // more. Left empty, the whole band is simply not shown.
+  heroPhoto      : "assets/photos/campus-dusk.jpeg",
+
+  // Which part of the photograph to keep when it is cropped. The band
+  // is 21:9 on a desktop and 4:3 on a phone, so a tall photograph
+  // loses its top and bottom. Second value moves the crop up or down:
+  // "center 30%" keeps more sky, "center 70%" keeps more ground.
+  heroFocus      : "center 48%",
+
+  // Slow drift across the hero photograph. Gives the page a little
+  // life without the weight of a video file. Turned off automatically
+  // for anyone who has disabled animations.
+  heroMotion     : true,
+
+  // OPTIONAL: a short clip (6-10 seconds, silent, loops cleanly).
+  // heroPhoto is REQUIRED for this — it serves as the poster frame.
+  // The video only plays on a good connection, and never for anyone
+  // who has turned off animations. See the README.
+  //   heroVideo : "assets/photos/hero.mp4",
+  heroVideo      : "",
+
+  // Entry test details printed on every roll number slip
+  test: {
+    session   : "Entry Test 2026",
+    date      : "To be announced — watch the notice board",
+    reporting : "8:00 a.m.",
+    duration  : "90 minutes",
+    venue     : "Sudhum Children Academy, Shereen Abad, Pir Baba Road, Rustam"
+  },
+
+  // Paste the Google Apps Script /exec URL here (see server/SETUP.md).
+  // While this is empty no application reaches the office — only the
+  // printed slip and WhatsApp work.
+  formEndpoint : "",
+
+  // Clean URLs (sudhum.edu.pk/admissions) — needs .htaccess uploaded.
+  // If the host cannot rewrite, set this to false: #/admissions still works.
+  cleanUrls : true
+};
+
+/* ============================================================
+   NOTICES — the thing people look at first. Add a new notice at the
+   TOP of this list. date: "YYYY-MM-DD". cat: Admission | Test |
+   Result | Datesheet | General. pinned:true keeps it above the rest.
+   ============================================================ */
+const NOTICES = [
+  {
+    date  : "",                       // <- put the notice date here
+    cat   : "Admission",
+    title : "Admissions open — Pre-Primary to F.Sc",
+    body  : "The prospectus and admission form are available from the college office once the annual results are declared. You can also start the application online.",
+    link  : { href: "/apply", text: "Apply online" },
+    pinned: true
+  },
+  {
+    date  : "",
+    cat   : "Test",
+    title : "Entry test registration is open",
+    body  : "Pre-Primary to Class 9. Register online and print your roll number slip. The merit list goes up on the notice board within 24 hours of the test.",
+    link  : { href: "/entry-test", text: "Get roll number slip" },
+    pinned: false
+  }
+];
+
+/* ============================================================
+   RESULTS — board results and position holders.
+   Left empty, the page says so plainly instead of showing figures.
+   Never invent an entry here — parents rely on this.
+   ============================================================ */
+const RESULTS = {
+  summary : [
+    // { year:"2025", exam:"S.S.C — BISE Mardan", appeared:"", passed:"", a1:"", note:"" },
+  ],
+  toppers : [
+    // { name:"", cls:"Class 10", marks:"", position:"1st in college", year:"2025" },
+  ]
+};
+
+/* ============================================================
+   FEES — an amount left blank shows as "Ask the office" for that
+   cell. Fill these in once the office confirms the real figures.
+   ============================================================ */
+const FEES = {
+  currency : "PKR",
+  note     : "The admission fee and four months' tuition are paid in advance at the time of admission. Remaining tuition is due at the end of each month. All payments are made at the accounts office.",
+  rows : [
+    { cls:"Nursery / Prep",        admission:"", tuition:"" },
+    { cls:"Class 1 – 5",           admission:"", tuition:"" },
+    { cls:"Class 6 – 8",           admission:"", tuition:"" },
+    { cls:"Class 9 – 10 (S.S.C)",  admission:"", tuition:"" },
+    { cls:"F.Sc — Pre-Medical",    admission:"", tuition:"" },
+    { cls:"F.Sc — Pre-Engineering",admission:"", tuition:"" },
+    { cls:"Hostel (boarding)",     admission:"", tuition:"" }
+  ]
+};
+
+/* ============================================================
+   BOOK LISTS — for each class either list the subjects or link a
+   PDF. pdf: "assets/books-class-9.pdf"
+   ============================================================ */
+const BOOKS = {
+  note : "Class-wise book lists are issued by the office before each academic year and posted on the notice board. A printed list also comes with the prospectus.",
+  rows : [
+    // { cls:"Class 9", subjects:"Physics, Chemistry, Biology, Maths, English, Urdu, Islamiyat, Pak Studies", pdf:"" },
+  ]
+};
+
+/* ============================================================
+   UNIFORM — summer and winter, per section.
+   ============================================================ */
+const UNIFORM = {
+  note : "The approved cloth, colour and stitching pattern are available at the college office.",
+  rows : [
+    // { section:"Primary", summer:"", winter:"" },
+  ]
+};
+
+/* ============================================================
+   GALLERY — put the photographs in assets/photos/ and list them
+   here. Any missing file leaves an empty frame in its place.
+   ============================================================ */
+const GALLERY = [
+  { src:"assets/photos/campus-dusk.jpeg",  caption:"The campus at dusk, Rustam" },
+  { src:"assets/photos/courtyard.jpeg",    caption:"The main courtyard" },
+  { src:"assets/photos/stairway.jpeg",     caption:"Classroom blocks and stairway" },
+  { src:"assets/photos/assembly.jpg",     caption:"Morning assembly" },
+  { src:"assets/photos/laboratory.jpg",   caption:"Science laboratory" },
+  { src:"assets/photos/prize-day.jpg",    caption:"Prize distribution" }
+];
+
+/* ---------- faculty, as recorded by the office ---------- */
+const FACULTY = [
+["Mubarak Ali","M.Phil Scholar","High & Higher Secondary"],
+["Muhammad Imran","Ph.D Scholar","High & Higher Secondary"],
+["Akhtar Ali","M.A, B.Ed","High & Higher Secondary"],
+["Tariq Hussain","M.A Islamiyat","High & Higher Secondary"],
+["Asghar Ali","M.A Urdu","High & Higher Secondary"],
+["Muhammad Anas","M.A English","High & Higher Secondary"],
+["Sher Rahman Babar","M.A Urdu","High & Higher Secondary"],
+["Abdul Majid","M.Sc Mathematics","High & Higher Secondary"],
+["Arif Ali","M.Sc Chemistry","High & Higher Secondary"],
+["Mufti Muhammad Kamran","Shahadat ul Almia","High & Higher Secondary"],
+["Saleem Ur Rahman","M.Sc Chemistry","High & Higher Secondary"],
+["Sami Ur Rahman","B.A, Shahadat ul Almia","High & Higher Secondary"],
+["Jehangir Khan","M.A, ADE","High & Higher Secondary"],
+["Ghawas Ali","B.Sc, B.Ed","High & Higher Secondary"],
+["Fawad Ali","BS Zoology","High & Higher Secondary"],
+["Mehboob Alam","BS Physics","High & Higher Secondary"],
+["Hayat Ullah","M.A English","High & Higher Secondary"],
+["Noor Muhammad","Health & Physical Education","High & Higher Secondary"],
+["Abrar Hussain","M.Sc Mathematics","High & Higher Secondary"],
+["Muhammad Bilal","M.Sc Chemistry, ADE","High & Higher Secondary"],
+["Imtiaz Ahmad","B.Sc, M.Com","High & Higher Secondary"],
+["Hassam Ul Mulk","BS Physics","High & Higher Secondary"],
+["Fasih ul Bayan","B.A, DIT","High & Higher Secondary"],
+["Abdullah","MCS","High & Higher Secondary"],
+["Jehan Ali Khan","M.A, B.Ed","High & Higher Secondary"],
+["Fawad Ali","M.Com, DIT","High & Higher Secondary"],
+
+["Muhammad Ibrahim","M.A, B.Ed","Middle"],
+["Zardasht Khan","M.A, ADE","Middle"],
+["Atta ul Haq","M.A Islamiyat","Middle"],
+["Syed Waheedullah Shah","B.Com, CIT","Middle"],
+["Hafiz Muhammad Ibrahim","M.A, M.Ed","Middle"],
+["Tahir Shah","M.A Islamiyat","Middle"],
+["Khan Zada","B.Sc","Middle"],
+["Muhammad Sadeeq","M.A, B.Ed","Middle"],
+["Muhammad Irfan","BS Zoology, M.Ed","Middle"],
+["Mohsin Taj","B.Sc","Middle"],
+["Syed Imtiaz Ali Shah","M.A Islamiyat","Middle"],
+["Muhammad Arshad","M.Sc","Middle"],
+["Abid Ali","—","Middle"],
+["Muhammad Aamir","BS Physics","Middle"],
+["Tanveer Salik Khaksar","M.Com","Middle"],
+["Aftab Seyab Khaksar","M.A Islamiyat","Middle"],
+
+["Shehryar Khan","M.A, B.Ed","Primary"],
+["Atif Khan","MBA, PTC","Primary"],
+["Noor ul Amin","B.A, B.Ed","Primary"],
+["Hafiz Kifayatullah","B.A, Qari","Primary"],
+["Habib Ullah","M.A, B.Ed","Primary"],
+["Ashiq Zaman","M.A, PTC","Primary"],
+["Muhammad Shuaib","B.A, B.Ed","Primary"],
+["Muhammad Zohaib","B.A","Primary"],
+["Asif Ali","B.A","Primary"],
+["Muhammad Bilal","B.A","Primary"],
+["Zulhib","M.A, Shahadat ul Almia","Primary"],
+["Haris Gul","B.A","Primary"],
+["Shahzaman","M.A, M.Ed","Primary"],
+["Hafiz Muhammad Ajmal","B.A, Qari","Primary"],
+["Muhammad Jawad","B.A","Primary"],
+["Subhanullah","M.A, CT","Primary"],
+["Rashid Mehmood","B.A","Primary"],
+["Basharat Ali","M.A, ADE","Primary"],
+["Muhammad Uzair","B.A","Primary"],
+["Muhammad Shahab","M.A, PTC","Primary"],
+["Shahzeb","B.Sc","Primary"],
+["Waqas Nazir","M.Com","Primary"],
+["Lal Bahadar","B.A","Primary"],
+["Laiq Bahadar","Shahadat ul Almia","Primary"],
+["Salman Ahmad","B.CS, Diploma in English Language","Primary"],
+
+["Mubarak Ali","M.A, B.Ed","Pre-Primary"],
+["Gul Taj","B.A","Pre-Primary"],
+["Ameer Zeb","B.A","Pre-Primary"],
+["Midrar Ullah","B.A","Pre-Primary"],
+["Muhammad Suhrab Khaksaar","B.A","Pre-Primary"],
+["Muhammad Raheel","M.A","Pre-Primary"],
+["Azeem Khan","B.A","Pre-Primary"],
+["Muhammad Nawaz","M.A Islamiyat","Pre-Primary"],
+["Syed Muhammad Ishtiaq","B.A","Pre-Primary"],
+["Shazana Ayaz","B.Sc","Pre-Primary"],
+["Ambareen","B.A","Pre-Primary"]
+];
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Loaded without blocking the first paint. A render-blocking font
+     stylesheet cost 370ms of blank screen on a slow connection;
+     display=swap means the text is readable the whole time anyway.
+     The noscript copy keeps it working with JavaScript off. -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet"></noscript>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "School",
+  "name": "Sudhum Children Academy & Science College Rustam",
+  "foundingDate": "1996",
+  "url": "https://sudhum.edu.pk/",
+  "email": "sudhumsca@gmail.com",
+  "telephone": "+92-937-801321",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Shereen Abad, Pir Baba Road",
+    "addressLocality": "Rustam, Mardan",
+    "addressRegion": "Khyber Pakhtunkhwa",
+    "addressCountry": "PK"
+  }
+}
+</script>
+
+<style>
+/* ============================================================
+   SUDHUM CHILDREN ACADEMY — design tokens
+   Change the brand colour in ONE place: --navy
+   ============================================================ */
+:root{
+  /* ---- ORIGINAL SUDHUM THEME COLOURS (taken from the old site) ---- */
+  --navy:#294A70;          /* brand navy — nav, headings, buttons */
+  --navy-2:#1D3654;        /* darker navy — footer */
+  --navy-3:#3A5F8A;        /* hover */
+  --navy-light:#49688E;    /* top strip */
+  --gold:#F4A024;          /* accent orange */
+  --gold-2:#FFAB1F;
+  --gold-soft:#FFF3DE;
+
+  --ink:#1B2A3D;
+  --bg:#F5F8FB;
+  --paper:#FFFFFF;
+  --stone:#E9EFF5;
+  --rule:#D3DEE8;
+  --muted:#5A6D82;
+  --danger:#B02A20;
+
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
+  --f-urdu:"Noto Nastaliq Urdu",serif;
+
+  --s--1:.8125rem;
+  --s-0:1rem;
+  --s-1:1.125rem;
+  --s-2:1.375rem;
+  --s-3:1.75rem;
+  --s-4:2.25rem;
+  --s-5:clamp(2.4rem,6.2vw,4.2rem);
+
+  --wrap:1160px;
+  --gap:clamp(1.25rem,3vw,2.25rem);
+  --pad-y:clamp(3rem,7vw,5.5rem);
+  --radius:14px;
+  --shadow:0 1px 2px rgba(18,33,27,.05),0 8px 28px -14px rgba(18,33,27,.22);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--f-body);font-size:var(--s-0);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--navy);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:3px}
+
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:500;line-height:1.14;margin:0 0 .5em;letter-spacing:-.012em}
+h1{font-size:var(--s-5);font-weight:400}
+h2{font-size:var(--s-4);font-weight:400}
+h3{font-size:var(--s-2)}
+h4{font-size:var(--s-1);font-family:var(--f-body);font-weight:600;letter-spacing:0}
+p{margin:0 0 1em}
+.lede{font-size:var(--s-1);color:var(--muted);max-width:62ch}
+.urdu{font-family:var(--f-urdu);line-height:2.3;direction:rtl}
+
+.wrap{width:min(100% - 2.5rem,var(--wrap));margin-inline:auto}
+/* keep anchors clear of the sticky header */
+[id]{scroll-margin-top:110px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:.7rem 1rem;z-index:200}
+.skip:focus{left:.5rem;top:.5rem}
+
+/* ---------- eyebrow: the structural label used across the site ---------- */
+.eyebrow{
+  font-family:var(--f-mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.7rem;margin:0 0 1rem;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule);max-width:120px}
+
+/* ---------- header: navy bar with orange underline, like the original ---------- */
+.site-head{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:3px solid var(--gold)}
+/* min-height pins the row to the height it has BEFORE scrolling: the
+   54px crest plus its .6rem padding top and bottom. The header is
+   sticky and therefore still in the flow, so if it were allowed to get
+   shorter on scroll, everything below it would slide up — and the
+   browser's scroll anchoring would then push the scroll position back
+   down, out of the "stuck" range, growing the header again. That loop
+   made the header flicker. Keeping the row height constant removes the
+   cause; the crest still shrinks inside it. */
+.site-head .wrap{display:flex;align-items:center;gap:1rem;padding:.6rem 0;min-height:calc(54px + 1.2rem)}
+.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;flex:1;min-width:0}
+.brand:hover{color:#fff}
+.brand img{width:54px;height:54px;object-fit:contain;flex:none}
+.brand-txt{min-width:0}
+.brand-name{font-family:var(--f-display);font-size:1.08rem;line-height:1.2;display:block;font-weight:500;color:#fff}
+.brand-sub{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#AFC3DC}
+
+.nav{display:flex;align-items:center;gap:.1rem}
+.nav a{
+  font-size:.9rem;font-weight:500;color:#EAF1F9;text-decoration:none;
+  padding:.55rem .7rem;border-radius:6px;white-space:nowrap;
+}
+.nav a:hover{background:var(--navy-3);color:#fff}
+.nav a[aria-current="page"]{background:var(--gold);color:#fff}
+
+/* ---------- dropdown menus ---------- */
+.nav-item{position:relative;display:flex}
+.nav-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--f-body);font-size:.9rem;font-weight:500;color:#EAF1F9;
+  background:none;border:0;padding:.55rem .7rem;border-radius:6px;
+  cursor:pointer;white-space:nowrap;
+}
+.nav-btn:hover{background:var(--navy-3);color:#fff}
+.nav-item[data-current="1"] > .nav-btn{background:var(--gold);color:#fff}
+.caret{
+  width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
+  border-top:5px solid currentColor;transition:transform .18s ease;flex:none;
+}
+.nav-item.open > .nav-btn .caret{transform:rotate(180deg)}
+
+.nav-menu{
+  position:absolute;top:calc(100% + 3px);left:0;min-width:232px;
+  background:var(--navy-2);border:1px solid rgba(255,255,255,.13);
+  border-top:3px solid var(--gold);border-radius:0 0 11px 11px;
+  padding:.4rem;display:grid;gap:1px;z-index:120;
+  box-shadow:0 20px 44px -22px rgba(0,0,0,.85);
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;
+}
+.nav-item.open > .nav-menu{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .18s ease,transform .18s ease,visibility 0s;
+}
+.nav-menu a{padding:.6rem .75rem;font-size:.88rem;border-radius:6px;white-space:nowrap}
+.nav-sep{display:block;height:1px;background:rgba(255,255,255,.14);margin:.35rem .6rem}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-family:var(--f-body);font-size:.92rem;font-weight:600;
+  padding:.72rem 1.15rem;border-radius:10px;border:1px solid transparent;
+  text-decoration:none;cursor:pointer;transition:transform .15s ease,background .15s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--navy-3);color:#fff}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--rule)}
+.btn-ghost:hover{border-color:var(--navy);background:var(--paper);color:var(--navy)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--gold-2);color:#fff}
+.btn-sm{padding:.5rem .85rem;font-size:.83rem}
+
+.head-phone{font-family:var(--f-mono);font-size:.84rem;color:#EAF1F9;text-decoration:none;padding:.45rem .65rem;border:1px solid rgba(255,255,255,.3);border-radius:8px;white-space:nowrap}
+.head-phone:hover{background:var(--navy-3);color:#fff;border-color:transparent}
+/* Drawer-only. The desktop header already carries Apply and the phone
+   number, so without this they would appear twice. */
+.nav-phone,.nav-cta{display:none}
+.burger{display:none;background:none;border:1px solid rgba(255,255,255,.4);border-radius:9px;padding:.5rem .6rem;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:#fff;margin:4px 0}
+
+/* ---------- notice band ---------- */
+.notice{background:var(--gold-soft);border-bottom:1px solid #F6DCB2}
+.notice .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;padding:.7rem 0;font-size:.9rem}
+.notice .tag{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--gold);color:#fff;padding:.24rem .55rem;border-radius:5px;flex:none;
+}
+.notice a{font-weight:600}
+
+/* ---------- pages ---------- */
+.page{display:none}
+.page.is-active{display:block;animation:fade .35s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+section.band{padding:var(--pad-y) 0}
+section.band + section.band{padding-top:0}
+.band-stone{background:var(--stone);padding:var(--pad-y) 0;margin-block:var(--pad-y) 0}
+.band-navy{background:var(--navy);color:#DCE9E1;padding:var(--pad-y) 0}
+.band-navy h2,.band-navy h3{color:#fff}
+.band-navy .eyebrow{color:var(--gold-2)}
+.band-navy .eyebrow::after{background:rgba(255,255,255,.22)}
+
+.page-head{padding:clamp(2.5rem,6vw,4rem) 0 0}
+.page-head h1{font-size:clamp(2rem,5vw,3.2rem);max-width:20ch}
+
+/* ---------- hero ----------
+   Copy first, photograph below it as a wide band. This used to be a
+   crest card that simply repeated the header — which is why half the
+   hero felt empty. */
+.hero{padding:clamp(2.5rem,6vw,4.5rem) 0 clamp(2rem,4vw,3rem)}
+.hero-copy{max-width:min(100% - 2.5rem,var(--wrap))}
+/* text-wrap:balance evens out the line lengths — without it the last
+   line is left with a single stranded word. Older browsers ignore the
+   property, which costs nothing. */
+.hero h1{margin-bottom:.3em;max-width:19ch;text-wrap:balance}
+.hero .lede,.hero-urdu{text-wrap:pretty}
+.hero h1 em{font-style:italic;color:var(--navy)}
+
+/* The Urdu name sits flush with the English column. It used to be
+   right-aligned, which tore a ragged gap between headline and lede. */
+.hero-urdu{
+  font-family:var(--f-urdu);font-size:1.2rem;line-height:2.1;color:var(--muted);
+  direction:rtl;text-align:left;margin:0 0 1.35rem;
+  padding-bottom:1.15rem;border-bottom:1px solid var(--rule);max-width:34ch;
+}
+.hero .lede{max-width:58ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.7rem}
+
+/* Hero entrance, pure CSS. It has to be pure CSS: this is the first
+   thing anyone sees, and anything waiting on JavaScript leaves the
+   hero blank until the script runs. */
+@keyframes heroIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-copy > *{animation:heroIn .55s cubic-bezier(.22,.68,.3,1) both}
+.hero-copy > :nth-child(1){animation-delay:.04s}
+.hero-copy > :nth-child(2){animation-delay:.11s}
+.hero-copy > :nth-child(3){animation-delay:.18s}
+.hero-copy > :nth-child(4){animation-delay:.25s}
+.hero-copy > :nth-child(5){animation-delay:.32s}
+
+/* ---------- hero photo band ---------- */
+/* ---------- hero photograph as the section background ----------
+   The photograph fills the hero edge to edge and the words sit on top
+   of it. A photograph alone is never a safe backdrop for text, so a
+   navy scrim goes over it — weighted towards the left, where the words
+   are, so the mountains on the right stay visible. */
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--navy)}
+.hero-bg img,.hero-bg video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 48%;
+}
+.hero-bg video{opacity:0;transition:opacity .5s ease}
+.hero-bg.has-video video{opacity:1}
+/* Scrim strength is not a matter of taste — it is measured. The dark
+   zone has to cover the full width the words reach, which is wider on
+   a narrower screen, so the transition starts late. Every value here
+   was set by measuring the worst-case pixel behind each piece of text
+   and checking it against WCAG AA. */
+.hero-bg::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(100deg,
+      rgba(14,28,45,.94) 0%,
+      rgba(14,28,45,.91) 52%,
+      rgba(14,28,45,.74) 78%,
+      rgba(14,28,45,.56) 100%),
+    linear-gradient(to bottom, rgba(14,28,45,.40), transparent 30%);
+}
+
+/* ---------- hero in its photograph state ---------- */
+.hero.has-photo{
+  position:relative;isolation:isolate;background:var(--navy);
+  padding:clamp(3.2rem,8vw,6rem) 0 clamp(3rem,7vw,5.5rem);
+  margin-bottom:0;
+}
+.hero.has-photo .hero-copy{position:relative;z-index:1}
+.hero.has-photo h1{color:#fff}
+.hero.has-photo h1 em{color:var(--gold-2)}
+/* A paler gold. The brand gold is mid-toned, and at 11px it needs a
+   4.5:1 ratio that no photograph backdrop can give it. */
+.hero.has-photo .eyebrow{color:#FFD08A}
+.hero.has-photo .eyebrow::after{background:rgba(255,255,255,.3)}
+.hero.has-photo .hero-urdu{color:#DCE7F2;border-bottom-color:rgba(255,255,255,.24)}
+.hero.has-photo .lede{color:#DCE7F2}
+
+/* navy-on-navy would vanish, so the buttons invert here */
+.hero.has-photo .btn-primary{background:#fff;color:var(--navy)}
+.hero.has-photo .btn-primary:hover{background:var(--gold-2);color:#fff}
+.hero.has-photo .btn-ghost{color:#fff;border-color:rgba(255,255,255,.5);background:transparent}
+.hero.has-photo .btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff;color:#fff}
+
+/* the stat rail now sits below the hero on its own light ground */
+.rail-band{padding:0 0 clamp(2rem,4vw,3rem)}
+.rail-band .rail{margin-top:0;border-top:0}
+
+
+/* ---------- stat rail ---------- */
+.rail{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border-block:1px solid var(--rule);margin-top:clamp(2rem,5vw,3.5rem)}
+.rail div{background:var(--bg);padding:1.25rem .5rem}
+.rail dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.rail dd{margin:0;font-family:var(--f-display);font-size:1.75rem;line-height:1.1;color:var(--navy)}
+.rail dd small{display:block;font-family:var(--f-body);font-size:.78rem;color:var(--muted);letter-spacing:0;margin-top:.25rem}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:var(--gap)}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
+.card h3{margin-bottom:.4rem}
+.card p:last-child{margin-bottom:0}
+.card .kicker{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.7rem}
+.card-link{display:block;text-decoration:none;color:inherit;transition:border-color .15s ease,transform .15s ease}
+.card-link:hover{border-color:var(--navy);transform:translateY(-2px);color:inherit}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.split-13{display:grid;grid-template-columns:.9fr 1.6fr;gap:var(--gap)}
+
+/* ---------- message / quote ---------- */
+.msg{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:var(--radius);padding:1.6rem}
+.msg blockquote{margin:0 0 1rem;font-family:var(--f-display);font-size:var(--s-2);line-height:1.45}
+.msg cite{font-style:normal;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- ordered policy lists ---------- */
+.rules{list-style:none;counter-reset:r;padding:0;margin:0;display:grid;gap:.9rem}
+.rules li{counter-increment:r;position:relative;padding-left:2.9rem;line-height:1.6}
+.rules li::before{
+  content:counter(r,decimal-leading-zero);position:absolute;left:0;top:.15rem;
+  font-family:var(--f-mono);font-size:.75rem;font-weight:600;color:var(--gold);
+  border:1px solid var(--rule);border-radius:6px;padding:.15rem .4rem;background:var(--paper);
+}
+.ticks{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+.ticks li{padding-left:1.6rem;position:relative}
+.ticks li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--gold);transform:rotate(45deg)}
+
+.formula{
+  font-family:var(--f-mono);background:var(--navy);color:#fff;border-radius:10px;
+  padding:1rem 1.2rem;font-size:1.05rem;letter-spacing:.04em;display:inline-block;
+}
+
+/* ---------- faculty ---------- */
+.fac-tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1.4rem}
+.chip{
+  font-family:var(--f-mono);font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--paper);border:1px solid var(--rule);border-radius:99px;padding:.42rem .85rem;cursor:pointer;color:var(--muted);
+}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.fac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem}
+.fac{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:.8rem .95rem}
+.fac b{display:block;font-weight:600;font-size:.95rem}
+.fac span{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.fac em{font-style:normal;font-size:.63rem;font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-top:.35rem}
+.fac-count{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);margin-bottom:1rem}
+
+/* ---------- forms ---------- */
+.form-shell{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:clamp(1.25rem,3vw,2.25rem);box-shadow:var(--shadow)}
+.steps{display:flex;gap:.5rem;margin-bottom:1.8rem;flex-wrap:wrap}
+.steps div{
+  flex:1;min-width:120px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding-top:.6rem;border-top:3px solid var(--rule);
+}
+.steps div[data-on="1"]{color:var(--navy);border-top-color:var(--gold)}
+fieldset{border:0;padding:0;margin:0 0 1.6rem}
+legend{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);padding:0;margin-bottom:1rem}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1rem}
+.field{display:flex;flex-direction:column;gap:.35rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.82rem;font-weight:600}
+.field label .req{color:var(--danger)}
+.field input,.field select,.field textarea{
+  font-family:var(--f-body);font-size:.95rem;color:var(--ink);
+  padding:.65rem .75rem;border:1px solid var(--rule);border-radius:9px;background:#FCFDFB;width:100%;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy);outline:2px solid rgba(20,80,58,.18);outline-offset:0}
+.field .hint{font-size:.75rem;color:var(--muted)}
+.field .err{font-size:.75rem;color:var(--danger);font-weight:600;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--danger);background:#FDF6F5}
+.field.invalid .err{display:block}
+.check{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;line-height:1.5}
+.check input{width:auto;margin-top:.25rem;flex:none}
+.form-actions{display:flex;gap:.7rem;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:1.3rem}
+.form-note{font-size:.82rem;color:var(--muted);margin-top:1rem}
+.review-list{display:grid;gap:.1rem;font-size:.9rem}
+.review-list div{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px dashed var(--rule)}
+.review-list dt{color:var(--muted);font-size:.82rem}
+.review-list dd{margin:0;font-weight:600;text-align:right}
+
+/* ---------- SIGNATURE ELEMENT: the printable slip ---------- */
+.slip{
+  position:relative;background:var(--paper);border:1.5px solid var(--navy);border-radius:12px;
+  padding:1.8rem 1.8rem 1.5rem 2.4rem;max-width:640px;margin:0 auto;box-shadow:var(--shadow);overflow:hidden;
+}
+.slip::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:14px;
+  background:radial-gradient(circle at 0 7px,transparent 6px,var(--navy) 6.5px,transparent 7px) 0 0/14px 14px repeat-y;
+  opacity:.35;
+}
+.slip-head{display:flex;gap:1rem;align-items:flex-start;border-bottom:1px solid var(--rule);padding-bottom:1rem;margin-bottom:1.1rem}
+.slip-head img{width:46px;height:46px;object-fit:contain;flex:none}
+.slip-title{font-family:var(--f-display);font-size:1.1rem;line-height:1.25;margin:0}
+.slip-kind{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.2rem}
+.seal{margin-left:auto;flex:none}
+.slip-no{font-family:var(--f-mono);font-size:1.5rem;font-weight:600;color:var(--navy);letter-spacing:.06em;margin:0 0 1.1rem}
+.slip-no small{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.15rem}
+.slip-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem 1.4rem;font-size:.88rem}
+.slip-grid dt{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.slip-grid dd{margin:.1rem 0 0;font-weight:600}
+.slip-rules{margin-top:1.3rem;border-top:1px dashed var(--rule);padding-top:1rem;font-size:.78rem;color:var(--muted)}
+.slip-rules b{color:var(--ink)}
+.slip-sign{display:flex;justify-content:space-between;gap:2rem;margin-top:2rem;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.slip-sign span{border-top:1px solid var(--ink);padding-top:.35rem;min-width:130px;text-align:center}
+.slip-actions{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;margin-top:1.7rem}
+
+/* ---------- misc ---------- */
+.contact-card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);padding:1.5rem}
+.contact-card h3{margin-bottom:.9rem}
+.contact-card dl{margin:0;display:grid;gap:.65rem}
+.contact-card dt{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.contact-card dd{margin:.1rem 0 0}
+.contact-card dd a{font-family:var(--f-mono);font-weight:500;text-decoration:none;font-size:.95rem}
+
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.7rem}
+.gal figure{margin:0;aspect-ratio:4/3;background:var(--stone);border:1px dashed var(--rule);border-radius:10px;display:grid;place-items:center;text-align:center;padding:.8rem;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.site-foot{background:var(--navy-2);color:#B9CEC1;padding:clamp(2.5rem,6vw,4rem) 0 1.5rem;margin-top:var(--pad-y)}
+.site-foot a{color:#DCE9E1;text-decoration:none;font-size:.9rem}
+.site-foot a:hover{color:var(--gold-2)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:var(--gap)}
+.foot-grid h4{color:#fff;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.9rem}
+.foot-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:.45rem}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.13);margin-top:2.5rem;padding-top:1.2rem;display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:space-between;font-size:.78rem}
+
+.toast{
+  position:fixed;left:50%;bottom:1.4rem;transform:translateX(-50%) translateY(140%);
+  background:var(--ink);color:#fff;padding:.8rem 1.2rem;border-radius:10px;font-size:.88rem;z-index:300;
+  transition:transform .3s ease;box-shadow:0 12px 30px -10px rgba(0,0,0,.5);max-width:90vw;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+
+/* ---------- leadership portraits ---------- */
+.leaders{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.leader{display:grid;grid-template-columns:132px 1fr;background:var(--paper);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.leader-photo{width:100%;height:100%;min-height:190px;object-fit:cover;object-position:center 18%;background:var(--stone);border-right:3px solid var(--gold)}
+.leader-body{padding:1.35rem}
+.leader-name{font-family:var(--f-display);font-size:1.2rem;line-height:1.2;margin:0 0 .15rem;color:var(--navy)}
+.leader-role{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.8rem}
+.leader blockquote{margin:0;font-size:.93rem;line-height:1.62;color:var(--muted)}
+.leader-lg{grid-template-columns:200px 1fr}
+.leader-lg blockquote{font-family:var(--f-display);font-size:1.12rem;color:var(--ink);line-height:1.5}
+
+.motto{font-family:var(--f-mono);font-size:.63rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-2);text-align:center;margin:.9rem 0 0}
+
+/* ---------- notices ---------- */
+.notes{display:grid;gap:.9rem}
+.note-item{
+  background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--rule);
+  border-radius:var(--radius);padding:1.25rem 1.4rem;box-shadow:var(--shadow);
+}
+.note-item[data-pinned="1"]{border-left-color:var(--gold);background:#FFFDF8}
+.note-top{display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;margin-bottom:.55rem}
+.note-cat{
+  font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--navy);color:#fff;padding:.22rem .55rem;border-radius:5px;
+}
+.note-cat[data-c="Result"]{background:#1F6B4A}
+.note-cat[data-c="Test"],.note-cat[data-c="Datesheet"]{background:var(--gold);color:#fff}
+.note-date{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.note-pin{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.note-item h3{font-size:var(--s-1);margin-bottom:.35rem}
+.note-item p{margin:0 0 .8rem;color:var(--muted);font-size:.94rem}
+.note-item p:last-child{margin-bottom:0}
+
+/* ---------- data tables ---------- */
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);border-radius:var(--radius);background:var(--paper)}
+table.tbl{border-collapse:collapse;width:100%;min-width:420px;font-size:.92rem}
+table.tbl caption{text-align:left;padding:.9rem 1.1rem 0;font-size:.8rem;color:var(--muted)}
+table.tbl th,table.tbl td{padding:.72rem 1.1rem;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+table.tbl thead th{
+  font-family:var(--f-mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;background:var(--stone);white-space:nowrap;
+}
+table.tbl tbody tr:last-child td{border-bottom:0}
+table.tbl td.num{font-family:var(--f-mono);white-space:nowrap}
+table.tbl td.pending{color:var(--muted);font-style:italic;font-family:var(--f-body)}
+
+/* ---------- empty state: honest, not a fake placeholder ---------- */
+.empty{
+  background:var(--paper);border:1px dashed var(--rule);border-radius:var(--radius);
+  padding:1.4rem 1.5rem;color:var(--muted);font-size:.92rem;
+}
+.empty b{color:var(--ink);display:block;margin-bottom:.3rem;font-family:var(--f-display);font-size:var(--s-1);font-weight:500}
+.empty a{font-family:var(--f-mono);font-size:.9rem}
+
+/* ---------- gallery + lightbox ---------- */
+.gal figure{position:relative;overflow:hidden;padding:0;border-style:solid;cursor:zoom-in}
+.gal figure.is-empty{cursor:default;border-style:dashed;padding:.8rem}
+.gal figure img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.gal figure:hover img{transform:scale(1.04)}
+.gal figcaption{
+  position:absolute;inset:auto 0 0 0;background:linear-gradient(transparent,rgba(27,42,61,.85));
+  color:#fff;padding:1.6rem .7rem .55rem;font-family:var(--f-mono);font-size:.66rem;
+  letter-spacing:.1em;text-transform:uppercase;text-align:left;
+}
+/* display:none cannot be transitioned, so visibility does the hiding */
+.lightbox{
+  position:fixed;inset:0;z-index:400;background:rgba(15,24,35,.92);
+  display:grid;place-items:center;padding:clamp(1rem,4vw,3rem);
+  opacity:0;visibility:hidden;transition:opacity .22s ease,visibility 0s linear .22s;
+}
+.lightbox.open{opacity:1;visibility:visible;transition:opacity .22s ease,visibility 0s}
+.lightbox img{
+  max-width:min(1100px,100%);max-height:82vh;object-fit:contain;border-radius:10px;
+  transform:scale(.97);transition:transform .28s cubic-bezier(.22,.68,.3,1);
+}
+.lightbox.open img{transform:none}
+.lightbox figcaption{color:#DCE9E1;font-family:var(--f-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-top:1rem}
+.lightbox button{
+  position:absolute;top:1rem;right:1rem;background:none;border:1px solid rgba(255,255,255,.4);
+  color:#fff;border-radius:9px;padding:.5rem .8rem;cursor:pointer;font-family:var(--f-mono);font-size:.8rem;
+}
+.lightbox button:hover{background:rgba(255,255,255,.12)}
+
+/* ============================================================
+   MOTION
+   Rule: motion only where it means something. Everything travels in
+   one direction (upward) at one speed.
+
+   Important: the hidden state lives only under `html.js-reveal`, and
+   JavaScript adds that class. With JS off nothing is ever hidden.
+   ============================================================ */
+html.js-reveal .reveal{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .55s ease var(--d,0ms),
+             transform .55s cubic-bezier(.22,.68,.3,1) var(--d,0ms);
+}
+html.js-reveal .reveal.in{opacity:1;transform:none}
+
+/* the hero photograph eases out of a slight zoom */
+html.js-reveal .hero-bg.reveal img{transform:scale(1.06);transition:transform 1.1s cubic-bezier(.22,.68,.3,1)}
+html.js-reveal .hero-bg.reveal.in img{transform:none}
+
+/* CONFIG.heroMotion — a very slow drift across the still photograph.
+   Costs nothing to download and gives the hero some life without a
+   video file. Replaces the one-off zoom above rather than fighting it
+   for the same transform property. */
+@keyframes heroDrift{ from{transform:scale(1)} to{transform:scale(1.07)} }
+html.js-reveal .hero-bg.has-motion img{
+  transform:none;transition:none;
+  animation:heroDrift 26s ease-in-out infinite alternate;
+}
+
+/* on scroll the header gains a shadow and the crest shrinks */
+.site-head{transition:box-shadow .25s ease}
+.brand img{transition:width .25s ease,height .25s ease}
+.site-head.is-stuck{box-shadow:0 10px 30px -18px rgba(0,0,0,.8)}
+/* only the crest changes size — the row it sits in must not (see above) */
+.site-head.is-stuck .brand img{width:44px;height:44px}
+
+/* press feedback */
+.btn:active{transform:translateY(0) scale(.985)}
+.chip{transition:background .15s ease,border-color .15s ease,color .15s ease}
+.note-item{transition:border-color .2s ease,transform .2s ease}
+.note-item:hover{transform:translateY(-2px)}
+.fac{transition:border-color .15s ease}
+.fac:hover{border-color:var(--navy)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .nav{
+    position:fixed;inset:0 0 0 auto;width:min(300px,82vw);background:var(--navy);
+    border-left:3px solid var(--gold);flex-direction:column;align-items:stretch;gap:.15rem;
+    padding:5.5rem 1rem 2rem;transform:translateX(100%);transition:transform .28s ease;box-shadow:-20px 0 50px -30px rgba(0,0,0,.4);
+  }
+  .nav.open{transform:none}
+  .nav a{padding:.8rem .75rem;font-size:1rem}
+  .nav{overflow-y:auto}
+
+  /* in the drawer a dropdown becomes an accordion — hover menus and
+     third levels do not work on touch */
+  .nav-item{position:static;display:block}
+  .nav-btn{width:100%;justify-content:space-between;padding:.8rem .75rem;font-size:1rem}
+  .nav-menu{
+    position:static;opacity:1;visibility:visible;transform:none;transition:none;
+    display:none;box-shadow:none;border:0;border-left:2px solid var(--gold);
+    border-radius:0;background:none;margin:.1rem 0 .5rem .55rem;padding:0 0 0 .55rem;
+  }
+  .nav-item.open > .nav-menu{display:grid}
+  .nav-menu a{font-size:.94rem;padding:.6rem .6rem;white-space:normal}
+  .nav-sep{display:none}
+  .nav-phone{display:block;font-family:var(--f-mono);font-size:.9rem;border:1px solid rgba(255,255,255,.3);border-radius:8px;margin-top:.8rem;text-align:center}
+  .nav-cta{display:inline-flex;margin-top:.6rem}
+  .head-phone{display:none}
+  .burger{display:block;order:3}
+  .head-cta{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .split,.split-13{grid-template-columns:1fr}
+  /* 21:9 becomes a thin strip on a phone, so give it more height */
+  .hero.has-photo{padding:clamp(2.8rem,9vw,4rem) 0 clamp(2.4rem,7vw,3.4rem)}
+  /* on a phone the words run the full width, so the scrim has to be
+     even everywhere rather than weighted to one side */
+  .hero-bg::after{
+    background:
+      linear-gradient(rgba(14,28,45,.84), rgba(14,28,45,.79)),
+      linear-gradient(to bottom, rgba(14,28,45,.28), transparent 30%);
+  }
+  .hero h1{max-width:none}
+  .rail{grid-template-columns:1fr 1fr}
+  .leaders{grid-template-columns:1fr}
+  .leader-lg{grid-template-columns:150px 1fr}
+  .slip-grid{grid-template-columns:1fr}
+  .slip{padding:1.3rem 1.2rem 1.2rem 1.8rem}
+}
+@media (max-width:560px){
+  .foot-grid{grid-template-columns:1fr}
+  .leader,.leader-lg{grid-template-columns:110px 1fr}
+  .leader-body{padding:1rem}
+}
+/* For anyone who has turned motion off system-wide: no animation at
+   all — but the content must appear in full immediately, never stuck
+   at opacity:0. */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+  html.js-reveal .reveal{opacity:1 !important;transform:none !important}
+  html.js-reveal .hero-bg.reveal img{transform:none !important}
+  html.js-reveal .hero-bg img{animation:none !important}
+  .hero-copy > *{animation:none !important}
+}
+
+/* ---------- print: only the slip ---------- */
+@media print{
+  .site-head,.notice,.site-foot,.slip-actions,.no-print,.toast,.lightbox{display:none !important}
+  body{background:#fff}
+  /* Anything not yet scrolled into view is still at opacity:0 and
+     would print blank. transition:none matters too — otherwise the
+     fade from 0 to 1 is still running when the print snapshot is
+     taken. */
+  html.js-reveal .reveal{opacity:1 !important;transform:none !important;transition:none !important}
+  .page{display:none !important}
+  .page.is-active{display:block !important}
+  .slip{box-shadow:none;border-color:#000;max-width:100%;page-break-inside:avoid}
+  .print-only{display:block !important}
+}
+.print-only{display:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#/">
+      <img id="brandLogo" src="assets/logo.png" alt="Sudhum Children Academy crest">
+      <span class="brand-txt">
+        <span class="brand-name">Sudhum Children Academy</span>
+        <span class="brand-sub">&amp; Science College · Rustam</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#/">Home</a>
+      <a href="#/about">About</a>
+
+      <div class="nav-item">
+        <button type="button" class="nav-btn" aria-expanded="false" aria-controls="menu-academics">
+          Academics <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-menu" id="menu-academics">
+          <a href="#/academics" data-anchor="sections">Sections &amp; subjects</a>
+          <a href="#/academics" data-anchor="books">Book lists</a>
+          <a href="#/faculty">Faculty</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button type="button" class="nav-btn" aria-expanded="false" aria-controls="menu-student">
+          Student <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-menu" id="menu-student">
+          <a href="#/admissions" data-anchor="admission-rules">Admission rules</a>
+          <a href="#/admissions" data-anchor="eligibility">Eligibility criteria</a>
+          <a href="#/admissions" data-anchor="fees">Tuition &amp; fees</a>
+          <a href="#/admissions" data-anchor="scholarship">Scholarship</a>
+          <a href="#/admissions" data-anchor="uniform">Uniform</a>
+          <span class="nav-sep" role="separator"></span>
+          <a href="#/apply">Apply online</a>
+          <a href="#/entry-test">Entry test slip</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button type="button" class="nav-btn" aria-expanded="false" aria-controls="menu-campus">
+          Campus <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-menu" id="menu-campus">
+          <a href="#/facilities" data-anchor="facilities-list">Facilities</a>
+          <a href="#/facilities" data-anchor="hostel">Hostel</a>
+          <a href="#/facilities" data-anchor="gallery">Gallery</a>
+        </div>
+      </div>
+
+      <a href="#/notices">Notices</a>
+      <a href="#/contact">Contact</a>
+      <a href="tel:+92937801321" class="nav-phone">Call office · 0937 801321</a>
+      <a href="#/apply" class="btn btn-gold btn-sm nav-cta">Apply online</a>
+    </nav>
+
+    <a href="tel:+92937801321" class="head-phone">0937 801321</a>
+    <a href="#/apply" class="btn btn-gold btn-sm head-cta">Apply online</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="notice">
+  <div class="wrap">
+    <span class="tag">Admissions open</span>
+    <!-- This text and link are replaced by the newest NOTICES entry once
+         the script runs. They are written out to match it, so nothing
+         visibly changes on a slow connection. -->
+    <span id="noticeText">Admissions open — Pre-Primary to F.Sc</span>
+    <a href="#/apply" id="noticeBandLink">Apply online →</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ══════════════════════════ HOME ══════════════════════════ -->
+<!-- is-active is set here, not by JavaScript. Without it every page is
+     display:none until the router runs, so the whole site is a blank
+     white area until then — seconds of it on a slow phone. The router
+     moves the class if the URL asks for a different page. -->
+<div class="page is-active" id="page-home">
+
+  <section class="hero" id="hero">
+    <!-- The photograph is the section's background. aria-hidden because
+         it is atmosphere, not information — everything it conveys is in
+         the words on top of it. -->
+    <div class="hero-bg" id="heroPhoto" aria-hidden="true">
+      <img id="heroPhotoImg" alt="" decoding="async" fetchpriority="high">
+    </div>
+    <script>
+    /* Runs while the body is still parsing, so the hero is already in its
+       final form at the first paint. Doing this at DOMContentLoaded made
+       the hero visibly flip from light to dark after the page appeared,
+       and delayed the photograph's download until then. CONFIG is the
+       single source of truth; it is defined in the head. */
+    (function(){
+      var hero = document.getElementById('hero'),
+          bg   = document.getElementById('heroPhoto'),
+          img  = document.getElementById('heroPhotoImg');
+      /* `typeof`, not window.CONFIG — a top-level `const` is a global
+         binding but never a property of window. */
+      if(typeof CONFIG === 'undefined' || !CONFIG.heroPhoto){ if(bg) bg.remove(); return; }
+      hero.classList.add('has-photo');
+      if(CONFIG.heroFocus) img.style.objectPosition = CONFIG.heroFocus;
+      img.src = CONFIG.heroPhoto;
+    })();
+    </script>
+
+    <div class="wrap hero-copy">
+      <p class="eyebrow">Rustam · Mardan · Since 1996</p>
+      <h1>Science, taught <em>properly</em> — at the foot of the Pir Baba road.</h1>
+      <p class="hero-urdu">سدھم چلڈرن اکیڈمی اینڈ سائنس کالج، رستم</p>
+      <p class="lede">From pre-primary to F.Sc on one campus. Sudhum Children Academy has held top distinction positions in the S.S.C examinations of BISE Mardan since 2005, and opened its Science College in 2006.</p>
+      <div class="hero-cta">
+        <a href="#/apply" class="btn btn-primary">Apply for admission</a>
+        <a href="#/entry-test" class="btn btn-ghost">Get an entry test roll number</a>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="rail-band">
+    <div class="wrap">
+      <dl class="rail">
+        <div><dt>Founded</dt><dd>1996<small>Boys academy, Rustam</small></dd></div>
+        <div><dt>Science college</dt><dd>2006<small>Girls academy, 2007</small></dd></div>
+        <div><dt>Teaching faculty</dt><dd>78<small>Pre-primary to F.Sc</small></dd></div>
+        <div><dt>BISE Mardan</dt><dd>2005<small>Top positions held since</small></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">What we run</p>
+      <h2>One campus, the whole school career.</h2>
+      <p class="lede" style="margin-bottom:2.2rem">A child can join at pre-primary and leave with an F.Sc — without changing institutions, teachers or standards.</p>
+      <div class="cards">
+        <a class="card card-link" href="#/academics"><span class="kicker">Section 01</span><h3>Pre-Primary &amp; Primary</h3><p>The block the institution calls the backbone of its work — where reading, handwriting and Qur'an study begin.</p></a>
+        <a class="card card-link" href="#/academics"><span class="kicker">Section 02</span><h3>Middle</h3><p>Classes 6 to 8. Subject teaching begins, with separate specialists for science, mathematics and languages.</p></a>
+        <a class="card card-link" href="#/academics"><span class="kicker">Section 03</span><h3>High — S.S.C</h3><p>Classes 9 and 10 under BISE Mardan. This is where the institution's distinction record was built.</p></a>
+        <a class="card card-link" href="#/academics"><span class="kicker">Section 04</span><h3>Science College — F.Sc</h3><p>Pre-Medical and Pre-Engineering, opened in 2006, with laboratory and hostel support.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap">
+      <p class="eyebrow">Leadership</p>
+      <div class="leaders">
+        <div class="leader">
+          <img class="leader-photo" src="assets/director-habib.jpg" alt="Sir Habib, Director">
+          <div class="leader-body">
+            <p class="leader-name">Sir Habib</p><span class="leader-role">Director</span>
+            <blockquote>To provide quality education in a locale where education was not held in very high esteem — that was the task the board of directors set themselves.</blockquote>
+          </div>
+        </div>
+        <div class="leader">
+          <img class="leader-photo" src="assets/principal-haider.jpg" alt="Sir Haider, Principal">
+          <div class="leader-body">
+            <p class="leader-name">Sir Haider</p><span class="leader-role">Principal</span>
+            <blockquote>We endeavour to provide our students with a highly qualified, experienced and dedicated faculty, as well as result-oriented testing.</blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Two things you can do here</p>
+      <div class="split">
+        <div class="card">
+          <h3>Apply for admission online</h3>
+          <p>Fill the form once. You get a printable application slip with a reference number to bring to the college office — no queue for the form itself.</p>
+          <a href="#/apply" class="btn btn-primary btn-sm">Start application</a>
+        </div>
+        <div class="card">
+          <h3>Register for the entry test</h3>
+          <p>Pre-Primary to Class 9. Register, print your roll number slip, and bring it on the test day. Merit list goes up within 24 hours of the test.</p>
+          <a href="#/entry-test" class="btn btn-gold btn-sm">Get roll number slip</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-navy">
+    <div class="wrap split-13">
+      <div>
+        <p class="eyebrow">Facilities</p>
+        <h2>Hostel, labs, library.</h2>
+      </div>
+      <div>
+        <ul class="ticks" style="columns:2;column-gap:2rem">
+          <li>Boarding hostel with its own office line</li>
+          <li>Science laboratory</li>
+          <li>Computer laboratory</li>
+          <li>Library</li>
+          <li>Separate girls' academy campus</li>
+          <li>Primary block for the youngest classes</li>
+        </ul>
+        <p style="margin-top:1.5rem"><a href="#/facilities" class="btn btn-gold btn-sm">See facilities</a></p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
+<div class="page" id="page-about">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">About the institution</p>
+      <h1>Thirty years in Rustam.</h1>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split-13">
+      <div>
+        <p class="eyebrow">Introduction</p>
+      </div>
+      <div>
+        <p class="lede">Since its establishment in 1996, Sudhum Children Academy has never looked back. The institution has held top distinction status in the S.S.C examinations conducted by BISE Mardan since 2005.</p>
+        <p>The academy extended itself by setting up Sudhum Science College in 2006, and established a Sudhum Girls Academy the very next year — to spread the light to the most oppressed class of our rural society.</p>
+        <p>The boys' campus is located at Shereen Abad, Rustam, on the Pir Baba Road, a short distance from Rustam main bazaar. The girls' campus sits half way between the main bazaar and the boys' campus. The primary block forms the backbone of the institution's struggle to kindle and enlighten the hearts and minds of its children.</p>
+        <p>At present the institution is exclusively meant for science studies, but keeping in view the utility of humanities, the administration is also considering the commencement of humanities classes in the near future.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap">
+      <p class="eyebrow">Messages</p>
+      <h2 style="margin-bottom:1.8rem">Who runs the institution.</h2>
+      <div class="leaders">
+        <div class="leader leader-lg">
+          <img class="leader-photo" src="assets/director-habib.jpg" alt="Sir Habib, Director of Sudhum Children Academy">
+          <div class="leader-body">
+            <p class="leader-name">Sir Habib</p><span class="leader-role">Message from the Director</span>
+            <blockquote>To provide quality education in a locale where education was not held in very high esteem — that was the task the board of directors set themselves.</blockquote>
+          </div>
+        </div>
+        <div class="leader leader-lg">
+          <img class="leader-photo" src="assets/principal-haider.jpg" alt="Sir Haider, Principal of Sudhum Children Academy">
+          <div class="leader-body">
+            <p class="leader-name">Sir Haider</p><span class="leader-role">Message from the Principal</span>
+            <blockquote>We endeavour to provide our students with a highly qualified, the most experienced and an extremely dedicated faculty, as well as result-oriented testing.</blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow">Campuses</p>
+      <h2>Three sites, one administration.</h2>
+      <div class="cards" style="margin-top:1.8rem">
+        <div class="card"><span class="kicker">Boys campus</span><h3>Shereen Abad, Rustam</h3><p>On the Pir Baba Road, a short distance from Rustam main bazaar. Pre-primary through F.Sc, with hostel accommodation for out-of-town students.</p></div>
+        <div class="card"><span class="kicker">Girls campus</span><h3>Sudhum Girls Academy</h3><p>Established 2007, half way between Rustam main bazaar and the boys' campus — set up to spread the light to the most oppressed class of our rural society.</p></div>
+        <div class="card"><span class="kicker">Primary block</span><h3>The backbone</h3><p>The primary block is what the institution calls the backbone of its struggle — to kindle and enlighten the hearts and minds of its children.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ ACADEMICS ══════════════════════════ -->
+<div class="page" id="page-academics">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Academics</p>
+      <h1>Four sections, one standard.</h1>
+      <p class="lede">Teaching is organised into four sections, each with its own faculty. The syllabus follows the Khyber Pakhtunkhwa Textbook Board, with S.S.C and H.S.S.C examinations conducted by BISE Mardan.</p>
+    </div>
+  </section>
+
+  <section class="band" id="sections">
+    <div class="wrap cards">
+      <div class="card">
+        <span class="kicker">Section 01 · Nursery to Kachi</span>
+        <h3>Pre-Primary</h3>
+        <p>Early literacy, numeracy, Nazira Qur'an and spoken English. Eleven teachers are assigned to this section alone.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Section 02 · Classes 1–5</span>
+        <h3>Primary</h3>
+        <p>The block the institution calls the backbone of its work. Twenty-five teachers, including Qaris and B.Ed holders.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Section 03 · Classes 6–8</span>
+        <h3>Middle</h3>
+        <p>Subject teaching begins. Specialists for mathematics, science, Islamiyat, computing and languages.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Section 04 · Classes 9–10</span>
+        <h3>High — S.S.C</h3>
+        <p>Science group under BISE Mardan. The institution has held top distinction positions here since 2005.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Section 05 · Classes 11–12</span>
+        <h3>Science College — F.Sc</h3>
+        <p>First Year and Second Year, <b>Pre-Medical</b> and <b>Pre-Engineering</b>, for boys and girls. Opened 2006, supported by the science laboratory, computer lab and hostel.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Under consideration</span>
+        <h3>Humanities</h3>
+        <p>The institution is exclusively science at present; the administration is considering commencing humanities classes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap split-13">
+      <div id="books"><p class="eyebrow">Textbooks</p><h2>Book lists</h2></div>
+      <div>
+        <div id="bookTable"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ ADMISSIONS ══════════════════════════ -->
+<div class="page" id="page-admissions">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Admissions</p>
+      <h1>How admission works.</h1>
+      <p class="lede">Prospectus and admission form can be obtained from the college office after the declaration of annual results. You can also start the application online and bring the printed slip with you.</p>
+      <p style="margin-top:1.4rem;display:flex;gap:.7rem;flex-wrap:wrap">
+        <a href="#/apply" class="btn btn-primary">Apply online</a>
+        <a href="#/entry-test" class="btn btn-ghost">Register for entry test</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split-13">
+      <div id="admission-rules"><p class="eyebrow">Admission rules</p><h2>Nine rules.</h2></div>
+      <div>
+        <ol class="rules">
+          <li>Application for admission must be submitted on the original printed form attached to the prospectus. A photocopy of the admission form is not accepted.</li>
+          <li>The application, complete in all respects, must be submitted to the college office on or before the notified date during office hours.</li>
+          <li>The merit list is displayed on the notice board of the college within 24 hours of the test.</li>
+          <li>Short-listed applicants must register themselves in the college office and take a date for interview.</li>
+          <li>Applicants must appear for the interview with their parents or guardian on the specified date. Those who fail to appear are not considered for admission.</li>
+          <li>To confirm admission, successful applicants must make all required payments within two working days of the interview, failing which the admission is treated as cancelled.</li>
+          <li>Applicants must make sure their course selection is correct. Faculty or subjects cannot be changed two weeks after classes commence.</li>
+          <li>Admission granted to a student of any class or section is final.</li>
+          <li>Successful applicants and their parents or legal guardian give a written undertaking that any breach of the disciplinary rules will lead to expulsion without prior warning or notice.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap split-13">
+      <div id="eligibility"><p class="eyebrow">Eligibility</p><h2>Who can apply.</h2></div>
+      <div>
+        <ol class="rules">
+          <li>Students with an E grade or compartments in the S.S.C examination are not eligible for admission to H.S.S.C.</li>
+          <li>Candidates who passed the S.S.C annual examination in the current year or the year before are eligible.</li>
+          <li>Candidates found guilty of moral turpitude, or convicted of a criminal offence by a court of law, are not eligible.</li>
+          <li>Admission remains at the sole discretion of the Principal, who reserves the right to refuse admission to any candidate without assigning a reason.</li>
+        </ol>
+        <h3 style="margin-top:2.2rem">How aggregate marks are calculated</h3>
+        <p class="formula">A × 0.70 &nbsp;+&nbsp; B × 0.30 &nbsp;=&nbsp; C</p>
+        <ul class="ticks" style="margin-top:1.1rem">
+          <li><b>A</b> — entry test marks</li>
+          <li><b>B</b> — S.S.C or equivalent marks</li>
+          <li><b>C</b> — aggregate marks used for the merit list</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split-13">
+      <div id="fees"><p class="eyebrow">Fees</p><h2>Payment rules.</h2></div>
+      <div>
+        <p>All students pay the admission fee and other dues at the time of admission, in accordance with the laid down policy. After admission, tuition fee and other dues are charged monthly or bimonthly across twelve months.</p>
+        <ul class="ticks">
+          <li>Admission fee and four months' tuition fee are submitted in advance at the time of admission.</li>
+          <li>Tuition fee is submitted at the end of every month, and before the beginning of a new academic year.</li>
+          <li>Promotion fee is deposited along with the tuition fee, in advance.</li>
+          <li>All fees are submitted at the accounts office.</li>
+          <li>Special fee relief is given to siblings studying at the institute.</li>
+        </ul>
+        <p style="margin-top:1.2rem">Parents are requested to discuss fee and admission dues with the accountant at the accounts office, rather than taking the matter to the Principal's office.</p>
+        <h3 style="margin-top:2.2rem">Class-wise fees</h3>
+        <div id="feeTable"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap split">
+      <div class="card" id="uniform">
+        <span class="kicker">Uniform</span>
+        <h3>Summer &amp; winter</h3>
+        <p>Separate summer and winter uniforms are prescribed for each section.</p>
+        <div id="uniformTable"></div>
+      </div>
+      <div class="card" id="scholarship">
+        <span class="kicker">Scholarship</span>
+        <h3>Merit &amp; sibling relief</h3>
+        <p>Fee concession is available, including special relief for siblings studying at the institute. Concession is dealt with at the accounts office.</p>
+        <p class="form-note">Add your scholarship criteria and application deadline here.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ NOTICES & RESULTS ══════════════════════════ -->
+<div class="page" id="page-notices">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Notice board</p>
+      <h1>Notices &amp; results.</h1>
+      <p class="lede">Admission announcements, entry test dates, datesheets and board results. This is the first page we update — alongside the notice board at the college office.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="fac-tools">
+        <button class="chip" data-not="all" aria-pressed="true">All</button>
+        <button class="chip" data-not="Admission" aria-pressed="false">Admission</button>
+        <button class="chip" data-not="Test" aria-pressed="false">Entry test</button>
+        <button class="chip" data-not="Datesheet" aria-pressed="false">Datesheet</button>
+        <button class="chip" data-not="Result" aria-pressed="false">Result</button>
+        <button class="chip" data-not="General" aria-pressed="false">General</button>
+      </div>
+      <div id="noticeList"></div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap">
+      <p class="eyebrow">Board results</p>
+      <h2>S.S.C &amp; H.S.S.C, BISE Mardan.</h2>
+      <p class="lede" style="margin-bottom:1.8rem">Sudhum Children Academy has held top distinction positions in the S.S.C examinations of BISE Mardan since 2005.</p>
+      <div id="resultSummary"></div>
+      <h3 style="margin-top:2.6rem">Position holders</h3>
+      <div id="resultToppers"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ FACILITIES ══════════════════════════ -->
+<div class="page" id="page-facilities">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Facilities</p>
+      <h1>What the campus provides.</h1>
+    </div>
+  </section>
+
+  <section class="band" id="facilities-list">
+    <div class="wrap cards">
+      <div class="card" id="hostel">
+        <span class="kicker">Boarding</span>
+        <h3>Hostel</h3>
+        <p>Residential accommodation for out-of-town students, with its own office line for parents: <a href="tel:+92937802020" style="font-family:var(--f-mono)">0937 802020</a>. Boarders are supervised during study hours.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Science</span>
+        <h3>Laboratory</h3>
+        <p>Physics, chemistry and biology practical work for S.S.C and F.Sc students, in line with the BISE Mardan practical syllabus.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Computing</span>
+        <h3>Computer Lab</h3>
+        <p>Computer studies for middle and higher classes, taught by faculty holding MCS, DIT and CIT qualifications.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Reading</span>
+        <h3>Library</h3>
+        <p>Reference and reading material for all sections, including textbooks, Islamic studies and general reading.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-stone">
+    <div class="wrap">
+      <p class="eyebrow" id="gallery">Gallery</p>
+      <h2>Campus photos</h2>
+      <p class="lede" style="margin-bottom:1.8rem">The boys' campus at Shereen Abad, on the Pir Baba Road. Click any photograph to see it full size.</p>
+      <div class="gal" id="galGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ FACULTY ══════════════════════════ -->
+<div class="page" id="page-faculty">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Faculty</p>
+      <h1>Seventy-eight teachers.</h1>
+      <p class="lede">Listed by section, with qualifications as recorded by the office. Search a name or filter by section.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="fac-tools">
+        <div class="field" style="max-width:260px">
+          <label class="sr-only" for="facSearch" style="font-size:.75rem">Search faculty</label>
+          <input type="search" id="facSearch" placeholder="Search a name or degree…">
+        </div>
+        <button class="chip" data-fac="all" aria-pressed="true">All</button>
+        <button class="chip" data-fac="High &amp; Higher Secondary" aria-pressed="false">High &amp; Higher Secondary</button>
+        <button class="chip" data-fac="Middle" aria-pressed="false">Middle</button>
+        <button class="chip" data-fac="Primary" aria-pressed="false">Primary</button>
+        <button class="chip" data-fac="Pre-Primary" aria-pressed="false">Pre-Primary</button>
+      </div>
+      <p class="fac-count" id="facCount"></p>
+      <div class="fac-grid" id="facGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+<div class="page" id="page-contact">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h1>Reach the office.</h1>
+      <p class="lede">Office hours are the working hours of the college. For fee and dues questions, ask for the accounts office directly.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <div class="contact-card">
+        <h3>Rustam campus</h3>
+        <p style="font-size:.9rem;color:var(--muted)">Shereen Abad, Pir Baba Road, Rustam, District Mardan, Khyber Pakhtunkhwa</p>
+        <dl>
+          <div><dt>Principal's office</dt><dd><a href="tel:+92937801100">0937 801100</a></dd></div>
+          <div><dt>Reception</dt><dd><a href="tel:+92937801321">0937 801321</a></dd></div>
+          <div><dt>Hostel</dt><dd><a href="tel:+92937802020">0937 802020</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:sudhumsca@gmail.com">sudhumsca@gmail.com</a></dd></div>
+        </dl>
+      </div>
+      <div class="contact-card">
+        <h3>Finding the campus</h3>
+        <p style="font-size:.9rem;color:var(--muted)">The boys' campus is on the Pir Baba Road at Shereen Abad, a short distance from Rustam main bazaar. The girls' academy is half way between the main bazaar and the boys' campus.</p>
+        <dl>
+          <div><dt>Office hours</dt><dd>College working hours, Monday to Saturday</dd></div>
+          <div><dt>Fee &amp; dues</dt><dd>Ask for the accounts office directly</dd></div>
+          <div><dt>Facebook</dt><dd><a href="https://www.facebook.com/sudhumscassc/?ref=embed_page" target="_blank" rel="noopener">/sudhumscassc</a></dd></div>
+          <div><dt>X (Twitter)</dt><dd><a href="https://twitter.com/sudhumsca" target="_blank" rel="noopener">@sudhumsca</a></dd></div>
+        </dl>
+        <p style="margin:1.2rem 0 0"><a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/Sudhum+Children+Academy+Rustam+Mardan">Open in Google Maps</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="form-shell" style="max-width:760px">
+        <p class="eyebrow">Send a question</p>
+        <h2 style="font-size:var(--s-3)">Ask the office</h2>
+        <form id="formEnquiry" novalidate>
+          <div class="fgrid">
+            <div class="field"><label for="eq_name">Your name <span class="req">*</span></label><input id="eq_name" name="name" required><span class="err">Enter your name.</span></div>
+            <div class="field"><label for="eq_phone">Mobile number <span class="req">*</span></label><input id="eq_phone" name="phone" inputmode="tel" placeholder="03xx xxxxxxx" required><span class="err">Enter an 11-digit mobile number.</span></div>
+            <div class="field full"><label for="eq_msg">Your question <span class="req">*</span></label><textarea id="eq_msg" name="message" rows="4" required></textarea><span class="err">Write your question.</span></div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send on WhatsApp</button>
+            <button type="button" class="btn btn-ghost" id="eqMail">Send by email instead</button>
+          </div>
+          <p class="form-note">This opens WhatsApp or your email app with the message ready. Nothing is stored on this page.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ APPLY (ADMISSION) ══════════════════════════ -->
+<div class="page" id="page-apply">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Online admission</p>
+      <h1>Admission application.</h1>
+      <p class="lede">Fill this once. You will get a printable application slip with a reference number — bring it to the college office along with the documents listed on the slip.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap" style="max-width:860px">
+      <div class="form-shell" id="applyShell">
+        <div class="steps" id="applySteps">
+          <div data-on="1">01 — Student</div>
+          <div data-on="0">02 — Guardian &amp; school</div>
+          <div data-on="0">03 — Review</div>
+        </div>
+
+        <form id="formApply" novalidate>
+
+          <!-- STEP 1 -->
+          <div class="astep" data-step="1">
+            <fieldset>
+              <legend>Student details</legend>
+              <div class="fgrid">
+                <div class="field"><label for="ap_name">Student's full name <span class="req">*</span></label><input id="ap_name" name="Student name" required><span class="err">Enter the student's name.</span></div>
+                <div class="field"><label for="ap_father">Father's name <span class="req">*</span></label><input id="ap_father" name="Father name" required><span class="err">Enter the father's name.</span></div>
+                <div class="field"><label for="ap_dob">Date of birth <span class="req">*</span></label><input type="date" id="ap_dob" name="Date of birth" required><span class="err">Select the date of birth.</span></div>
+                <div class="field"><label for="ap_gender">Gender <span class="req">*</span></label>
+                  <select id="ap_gender" name="Gender" required><option value="">Select…</option><option>Boy</option><option>Girl</option></select><span class="err">Select a gender.</span></div>
+                <div class="field"><label for="ap_bform">B-Form / CNIC number</label><input id="ap_bform" name="B-Form" placeholder="00000-0000000-0"><span class="hint">Optional now, required at the office.</span></div>
+                <div class="field"><label for="ap_class">Class applying for <span class="req">*</span></label>
+                  <select id="ap_class" name="Class applied for" required>
+                    <option value="">Select…</option>
+                    <optgroup label="Pre-Primary"><option>Nursery</option><option>Prep / Kachi</option></optgroup>
+                    <optgroup label="Primary"><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option></optgroup>
+                    <optgroup label="Middle"><option>Class 6</option><option>Class 7</option><option>Class 8</option></optgroup>
+                    <optgroup label="High — S.S.C"><option>Class 9</option><option>Class 10</option></optgroup>
+                    <optgroup label="Science College — F.Sc"><option>F.Sc I — Pre-Medical</option><option>F.Sc I — Pre-Engineering</option><option>F.Sc II — Pre-Medical</option><option>F.Sc II — Pre-Engineering</option></optgroup>
+                  </select><span class="err">Choose the class.</span></div>
+                <div class="field"><label for="ap_campus">Campus <span class="req">*</span></label>
+                  <select id="ap_campus" name="Campus" required><option value="">Select…</option><option>Rustam — Boys campus</option><option>Rustam — Girls Academy</option></select><span class="err">Choose a campus.</span></div>
+                <div class="field"><label for="ap_hostel">Hostel required</label>
+                  <select id="ap_hostel" name="Hostel"><option>No</option><option>Yes</option></select></div>
+              </div>
+            </fieldset>
+            <div class="form-actions"><button type="button" class="btn btn-primary" data-go="2">Continue</button></div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="astep" data-step="2" hidden>
+            <fieldset>
+              <legend>Guardian &amp; contact</legend>
+              <div class="fgrid">
+                <div class="field"><label for="ap_guard">Guardian's name <span class="req">*</span></label><input id="ap_guard" name="Guardian" required><span class="err">Enter the guardian's name.</span></div>
+                <div class="field"><label for="ap_rel">Relationship <span class="req">*</span></label>
+                  <select id="ap_rel" name="Relationship" required><option value="">Select…</option><option>Father</option><option>Mother</option><option>Brother</option><option>Uncle</option><option>Other guardian</option></select><span class="err">Select a relationship.</span></div>
+                <div class="field"><label for="ap_phone">Mobile number <span class="req">*</span></label><input id="ap_phone" name="Mobile" inputmode="tel" placeholder="03xx xxxxxxx" required><span class="err">Enter an 11-digit mobile number starting 03.</span></div>
+                <div class="field"><label for="ap_email">Email</label><input type="email" id="ap_email" name="Email" placeholder="optional"><span class="err">Check the email address.</span></div>
+                <div class="field full"><label for="ap_addr">Home address <span class="req">*</span></label><input id="ap_addr" name="Address" placeholder="Village / mohalla, tehsil, district" required><span class="err">Enter the address.</span></div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Previous school</legend>
+              <div class="fgrid">
+                <div class="field"><label for="ap_prev">Last school attended</label><input id="ap_prev" name="Previous school"><span class="hint">Leave blank for a first admission.</span></div>
+                <div class="field"><label for="ap_lastclass">Last class passed</label><input id="ap_lastclass" name="Last class passed"></div>
+                <div class="field"><label for="ap_marks">Marks / grade obtained</label><input id="ap_marks" name="Marks" placeholder="e.g. 812/1100 or A grade"></div>
+              </div>
+            </fieldset>
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" data-go="1">Back</button>
+              <button type="button" class="btn btn-primary" data-go="3">Review application</button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="astep" data-step="3" hidden>
+            <fieldset>
+              <legend>Check before you submit</legend>
+              <dl class="review-list" id="applyReview"></dl>
+            </fieldset>
+            <label class="check" style="margin-bottom:1.4rem">
+              <input type="checkbox" id="ap_agree" required>
+              <span>I confirm the information above is correct, and I accept the college's admission rules — including that admission is at the discretion of the Principal and that a breach of discipline can lead to expulsion.</span>
+            </label>
+            <p class="err" id="ap_agreeErr" style="display:none;color:var(--danger);font-weight:600;font-size:.8rem">Tick the box to continue.</p>
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" data-go="2">Back</button>
+              <button type="submit" class="btn btn-primary">Submit application</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- result slip -->
+      <div id="applyResult" hidden>
+        <div class="slip" id="applySlip"></div>
+        <div class="slip-actions no-print">
+          <button class="btn btn-primary" onclick="window.print()">Print / save as PDF</button>
+          <button class="btn btn-gold" id="applyWa">Send to office on WhatsApp</button>
+          <button class="btn btn-ghost" id="applyAgain">Fill another application</button>
+        </div>
+        <p class="form-note no-print" style="text-align:center;max-width:520px;margin-inline:auto">Keep this slip. The office will match your reference number when you bring the documents.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════ ENTRY TEST ══════════════════════════ -->
+<div class="page" id="page-entrytest">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Entry test</p>
+      <h1>Get your roll number slip.</h1>
+      <p class="lede">Register below and print the slip. Bring it on the test day — candidates without a roll number slip are not seated. The merit list goes up on the college notice board within 24 hours of the test.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap" style="max-width:860px">
+      <div class="form-shell" id="testShell">
+        <form id="formTest" novalidate>
+          <fieldset>
+            <legend>Candidate</legend>
+            <div class="fgrid">
+              <div class="field"><label for="et_name">Candidate's full name <span class="req">*</span></label><input id="et_name" name="Candidate" required><span class="err">Enter the candidate's name.</span></div>
+              <div class="field"><label for="et_father">Father's name <span class="req">*</span></label><input id="et_father" name="Father name" required><span class="err">Enter the father's name.</span></div>
+              <div class="field"><label for="et_class">Test for class <span class="req">*</span></label>
+                <select id="et_class" name="Class" required>
+                  <option value="">Select…</option>
+                  <option>Nursery</option><option>Prep / Kachi</option>
+                  <option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option>
+                  <option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option>
+                  <option>F.Sc I — Pre-Medical</option><option>F.Sc I — Pre-Engineering</option>
+                </select><span class="err">Choose the class.</span></div>
+              <div class="field"><label for="et_campus">Test centre <span class="req">*</span></label>
+                <select id="et_campus" name="Centre" required><option value="">Select…</option><option>Rustam — Boys campus</option><option>Rustam — Girls Academy</option></select><span class="err">Choose a centre.</span></div>
+              <div class="field"><label for="et_phone">Guardian's mobile <span class="req">*</span></label><input id="et_phone" name="Mobile" inputmode="tel" placeholder="03xx xxxxxxx" required><span class="err">Enter an 11-digit mobile number starting 03.</span></div>
+              <div class="field"><label for="et_prev">Present school</label><input id="et_prev" name="Present school" placeholder="optional"></div>
+            </div>
+          </fieldset>
+          <label class="check" style="margin-bottom:1.3rem">
+            <input type="checkbox" id="et_agree" required>
+            <span>I will bring this slip, the candidate's B-Form and the last result card on the test day.</span>
+          </label>
+          <p class="err" id="et_agreeErr" style="display:none;color:var(--danger);font-weight:600;font-size:.8rem">Tick the box to continue.</p>
+          <div class="form-actions"><button type="submit" class="btn btn-gold">Generate roll number slip</button></div>
+        </form>
+      </div>
+
+      <div id="testResult" hidden>
+        <div class="slip" id="testSlip"></div>
+        <div class="slip-actions no-print">
+          <button class="btn btn-primary" onclick="window.print()">Print / save as PDF</button>
+          <button class="btn btn-gold" id="testWa">Send to office on WhatsApp</button>
+          <button class="btn btn-ghost" id="testAgain">Register another candidate</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Sudhum Children Academy</h4>
+        <p style="font-size:.9rem;line-height:1.6;margin:0">&amp; Science College, Rustam.<br><em style="font-family:var(--f-mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-style:normal">Honour · Knowledge · Valour</em><br><br>Shereen Abad, Pir Baba Road,<br>Rustam, District Mardan,<br>Khyber Pakhtunkhwa, Pakistan.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="#/about">About</a></li>
+          <li><a href="#/academics">Academics</a></li>
+          <li><a href="#/notices">Notices &amp; results</a></li>
+          <li><a href="#/facilities">Facilities</a></li>
+          <li><a href="#/faculty">Faculty</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Admissions</h4>
+        <ul>
+          <li><a href="#/admissions">Rules &amp; eligibility</a></li>
+          <li><a href="#/apply">Apply online</a></li>
+          <li><a href="#/entry-test">Entry test slip</a></li>
+          <li><a href="#/contact">Contact office</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Office</h4>
+        <ul>
+          <li><a href="tel:+92937801100">Principal · 0937 801100</a></li>
+          <li><a href="tel:+92937801321">Reception · 0937 801321</a></li>
+          <li><a href="tel:+92937802020">Hostel · 0937 802020</a></li>
+          <li><a href="mailto:sudhumsca@gmail.com">sudhumsca@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Sudhum Children Academy &amp; Science College, Rustam.</span>
+      <span><a href="https://www.facebook.com/sudhumscassc/?ref=embed_page" target="_blank" rel="noopener">Facebook</a> · <a href="https://twitter.com/sudhumsca" target="_blank" rel="noopener">@sudhumsca</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo">
+  <button type="button" id="lbClose" aria-label="Close photo">Close ✕</button>
+  <figure style="margin:0">
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+
+/* ============================================================
+   helpers
+   ============================================================ */
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+let toastTimer;
+function toast(msg){
+  const t=$("#toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),3600);
+}
+function ref(prefix){
+  const d=new Date();
+  const n=String(d.getHours()).padStart(2,"0")+String(d.getMinutes()).padStart(2,"0")+String(Math.floor(Math.random()*90)+10);
+  return prefix+"-"+String(d.getFullYear()).slice(2)+"-"+n;
+}
+function today(){
+  return new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+}
+const SEAL = `<svg class="seal" width="58" height="58" viewBox="0 0 58 58" aria-hidden="true">
+<circle cx="29" cy="29" r="27" fill="none" stroke="#F4A024" stroke-width="1.2"/>
+<circle cx="29" cy="29" r="22.5" fill="none" stroke="#F4A024" stroke-width=".7" stroke-dasharray="2 3"/>
+<text x="29" y="26" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="#294A70">SCA</text>
+<text x="29" y="36" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="6.2" fill="#F4A024" letter-spacing="1">RUSTAM</text>
+</svg>`;
+
+/* ============================================================
+   router
+   ============================================================ */
+const SITE = "https://sudhum.edu.pk";
+const NAME = "Sudhum Children Academy & Science College, Rustam";
+
+/* Every route carries its own title and description — this is what
+   Google shows in search results. */
+const ROUTES = {
+  "/":            { id:"page-home",       title:NAME+" — Admissions & Entry Test",
+                    desc:"Pre-Primary to F.Sc in Rustam, Mardan. Established 1996. Apply online for admission or register for the entry test." },
+  "/about":       { id:"page-about",      title:"About — "+NAME,
+                    desc:"Established 1996 in Rustam, Mardan. Top distinction positions in BISE Mardan S.S.C since 2005. Science College opened 2006, Girls Academy 2007." },
+  "/academics":   { id:"page-academics",  title:"Academics — "+NAME,
+                    desc:"Pre-Primary, Primary, Middle, S.S.C and F.Sc (Pre-Medical & Pre-Engineering). KP Textbook Board syllabus, BISE Mardan examinations." },
+  "/admissions":  { id:"page-admissions", title:"Admissions, fees & eligibility — "+NAME,
+                    desc:"Admission rules, eligibility, aggregate formula and class-wise fees for Sudhum Children Academy & Science College, Rustam." },
+  "/notices":     { id:"page-notices",    title:"Notices & results — "+NAME,
+                    desc:"Latest admission notices, entry test dates, datesheets and BISE Mardan results from Sudhum Children Academy, Rustam." },
+  "/facilities":  { id:"page-facilities", title:"Facilities — "+NAME,
+                    desc:"Hostel, science laboratory, computer lab and library at the Rustam campus, Shereen Abad, Pir Baba Road." },
+  "/faculty":     { id:"page-faculty",    title:"Faculty — "+NAME,
+                    desc:"Seventy-eight teachers across Pre-Primary, Primary, Middle, High and Higher Secondary sections, with qualifications." },
+  "/contact":     { id:"page-contact",    title:"Contact — "+NAME,
+                    desc:"Shereen Abad, Pir Baba Road, Rustam, District Mardan. Principal's office 0937 801100, reception 0937 801321, hostel 0937 802020." },
+  "/apply":       { id:"page-apply",      title:"Apply online for admission — "+NAME,
+                    desc:"Fill the online admission application and print a slip with your reference number to bring to the college office." },
+  "/entry-test":  { id:"page-entrytest",  title:"Entry test registration — "+NAME,
+                    desc:"Register for the entry test, Pre-Primary to Class 9, and print your roll number slip." }
+};
+
+/* pushState does not work over file:// — fall back to hash there. */
+const CLEAN = CONFIG.cleanUrls && location.protocol !== "file:";
+
+function currentPath(){
+  // in "#/admissions#fees" everything after the second # is an
+  // anchor, not part of the route
+  if(location.hash.startsWith("#/")){
+    // An address nobody recognises has to resolve to "/", exactly as the
+    // clean-URL branch below does. Returning it unchecked showed the home
+    // page while telling search engines its canonical address was
+    // /whatever-was-typed — a page that does not exist.
+    const h = location.hash.slice(1).split("#")[0];
+    return ROUTES[h] ? h : "/";
+  }
+  if(!CLEAN) return "/";
+  const p = location.pathname.replace(/\/index\.html$/,"/").replace(/(.)\/$/,"$1");
+  return ROUTES[p] ? p : "/";
+}
+function href(path){ return CLEAN ? path : "#"+path; }
+
+function setMeta(sel, attr, val){
+  const el = document.head.querySelector(sel);
+  if(el) el.setAttribute(attr, val);
+}
+function route(){
+  const path = currentPath();
+  const r = ROUTES[path] || ROUTES["/"];
+
+  $$(".page").forEach(p=>p.classList.toggle("is-active", p.id===r.id));
+
+  document.title = r.title;
+  setMeta('meta[name="description"]','content', r.desc);
+  setMeta('link[rel="canonical"]','href', SITE + (path === "/" ? "/" : path));
+  setMeta('meta[property="og:title"]','content', r.title);
+  setMeta('meta[property="og:description"]','content', r.desc);
+  setMeta('meta[property="og:url"]','content', SITE + (path === "/" ? "/" : path));
+
+  $$("a[data-route]").forEach(a=>{
+    // submenu links with an anchor do not mark the whole page current,
+    // otherwise five links for one page all highlight at once
+    const on = a.dataset.route === path && !a.dataset.anchor;
+    if(on) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+  });
+
+  // highlight a dropdown's button when one of its pages is open
+  $$(".nav-item").forEach(item=>{
+    const on = $$("a[data-route]", item).some(a=>a.dataset.route === path);
+    item.dataset.current = on ? "1" : "0";
+  });
+
+  closeMenus();
+  $("#nav").classList.remove("open");
+  $("#burger").setAttribute("aria-expanded","false");
+
+  // arriving from a submenu, go to that section; otherwise to the top
+  const anchor = pendingAnchor; pendingAnchor = null;
+  const target = anchor && document.getElementById(anchor);
+  if(target){
+    // Wait a frame. In hash mode, setting `location.hash` makes the
+    // browser look for an element with that name, fail to find one,
+    // and scroll to the top itself — which cancels our scroll if we
+    // start it immediately.
+    requestAnimationFrame(()=> requestAnimationFrame(()=>
+      target.scrollIntoView({ behavior:"smooth", block:"start" })));
+    return;
+  }
+  window.scrollTo({top:0,behavior:"instant"});
+}
+
+/* Tag every internal link with its route, so that turning cleanUrls
+   on or off rewrites all the hrefs automatically. */
+function wireLinks(){
+  $$('a[href^="#/"], a[href^="/"]').forEach(a=>{
+    const raw = a.getAttribute("href");
+    const path = (raw.startsWith("#") ? raw.slice(1) : raw).split("#")[0];
+    if(!ROUTES[path]) return;
+    a.dataset.route = path;
+    // With clean URLs the anchor is part of the real link
+    // (/admissions#fees). A URL cannot carry two #, so in hash mode
+    // JavaScript does the scrolling instead.
+    const anc = a.dataset.anchor;
+    a.setAttribute("href", href(path) + (CLEAN && anc ? "#"+anc : ""));
+  });
+}
+
+let pendingAnchor = null;
+function go(path, anchor){
+  pendingAnchor = anchor || null;
+  if(CLEAN){
+    history.pushState({}, "", path + (anchor ? "#"+anchor : ""));
+    route();
+  } else if(currentPath() === path){
+    route();                 // already on this page — just scroll
+  } else {
+    location.hash = path;    // hashchange route() chala dega
+  }
+}
+document.addEventListener("click", e=>{
+  const a = e.target.closest("a[data-route]");
+  if(!a) return;
+  if(e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+  // anchor links are handled by JS even in hash mode
+  if(!CLEAN && !a.dataset.anchor) return;
+  e.preventDefault();
+  go(a.dataset.route, a.dataset.anchor);
+});
+window.addEventListener("hashchange", route);
+window.addEventListener("popstate", route);
+
+/* ============================================================
+   dropdown menus
+
+   They open on hover on the desktop and on tap on touch devices.
+   Keyboard works on both: Tab, Enter/Space, Escape.
+   ============================================================ */
+const isDesktopNav = ()=> mq("(min-width:1101px)");
+
+function closeMenus(except){
+  $$(".nav-item").forEach(item=>{
+    if(item === except) return;
+    item.classList.remove("open");
+    $(".nav-btn", item)?.setAttribute("aria-expanded","false");
+  });
+}
+function openMenu(item){
+  closeMenus(item);
+  item.classList.add("open");
+  $(".nav-btn", item).setAttribute("aria-expanded","true");
+}
+function toggleMenu(item){
+  item.classList.contains("open") ? closeMenus() : openMenu(item);
+}
+
+function initMenus(){
+  let hoverTimer;
+  $$(".nav-item").forEach(item=>{
+    const btn = $(".nav-btn", item);
+
+    // On the desktop a click only opens, it never toggles. The mouse
+    // hovers first (which opens the menu) and the click arrives after;
+    // a toggle would close it again straight away, so on a touchscreen
+    // laptop the menu would never open at all. Moving the mouse away,
+    // Escape, and an outside click all close it.
+    btn.addEventListener("click", ()=> isDesktopNav() ? openMenu(item) : toggleMenu(item));
+
+    // desktop: open on hover, close a moment after leaving, so the
+    // menu survives the trip from button to menu
+    item.addEventListener("mouseenter", ()=>{
+      if(!isDesktopNav()) return;
+      clearTimeout(hoverTimer);
+      openMenu(item);
+    });
+    item.addEventListener("mouseleave", ()=>{
+      if(!isDesktopNav()) return;
+      hoverTimer = setTimeout(()=> item.classList.contains("open") && closeMenus(), 180);
+    });
+
+    // keyboard: close as soon as focus leaves the menu
+    item.addEventListener("focusout", e=>{
+      if(!item.contains(e.relatedTarget)) {
+        item.classList.remove("open");
+        btn.setAttribute("aria-expanded","false");
+      }
+    });
+  });
+
+  // close on a click anywhere outside
+  document.addEventListener("click", e=>{
+    if(!e.target.closest(".nav-item")) closeMenus();
+  });
+}
+
+/* ============================================================
+   faculty list
+   ============================================================ */
+let facFilter="all";
+function renderFaculty(){
+  const q = ($("#facSearch").value||"").trim().toLowerCase();
+  const rows = FACULTY.filter(([n,d,s])=>{
+    const okSec = facFilter==="all" || s===facFilter;
+    const okQ = !q || n.toLowerCase().includes(q) || d.toLowerCase().includes(q);
+    return okSec && okQ;
+  });
+  $("#facGrid").innerHTML = rows.map(([n,d,s])=>
+    `<div class="fac"><b>${esc(n)}</b><span>${esc(d)}</span><em>${esc(s)}</em></div>`).join("")
+    || `<p class="lede">No teacher matches that search. Try a shorter word.</p>`;
+  $("#facCount").textContent = rows.length + " of " + FACULTY.length + " teachers";
+}
+
+/* ============================================================
+   scroll reveal
+
+   Built on IntersectionObserver — no library. An element rises into
+   place as it enters the screen, once, and is then unobserved.
+   ============================================================ */
+const REVEAL_SEL = [
+  /* NOT the hero copy — it is above the fold. Gating it on JavaScript
+     leaves the hero empty until the script runs; it has a CSS-only
+     entrance instead, which starts at the first paint. */
+  // the rail reveals as one piece — fading its cells separately
+  // exposes the grey grid background between them
+  ".rail",
+  ".cards > *", ".split > *", ".split-13 > *", ".leaders > *",
+  ".note-item", ".msg", ".tbl-scroll", ".empty",
+  ".form-shell", ".contact-card", ".gal figure",
+  ".rules li", ".ticks li", ".fac-tools", ".steps"
+].join(",");
+
+let revealIO = null;
+const revealed = new WeakSet();
+
+function revealScan(root=document){
+  if(!revealIO) return;
+  const perParent = new Map();
+  $$(REVEAL_SEL, root).forEach(el=>{
+    if(revealed.has(el)) return;
+    revealed.add(el);
+    // siblings follow one another slightly — the stagger
+    const i = perParent.get(el.parentElement) || 0;
+    perParent.set(el.parentElement, i+1);
+    el.style.setProperty("--d", Math.min(i,6)*70 + "ms");
+    el.classList.add("reveal");
+    revealIO.observe(el);
+  });
+}
+
+function initReveal(){
+  // older browsers: no animation, everything simply shows
+  if(!("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("js-reveal");
+  revealIO = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      e.target.classList.add("in");
+      revealIO.unobserve(e.target);
+    });
+  }, { rootMargin:"0px 0px -6% 0px", threshold:0.05 });
+  revealScan();
+}
+
+/* ============================================================
+   notices, results, fees, books, uniform, gallery
+   ============================================================ */
+function fmtDate(iso){
+  if(!iso) return "";
+  const d = new Date(iso+"T00:00:00");
+  if(isNaN(d)) return esc(iso);
+  return d.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+}
+function emptyState(title, body, cta){
+  return `<div class="empty"><b>${esc(title)}</b>${esc(body)}${
+    cta ? ` <a href="${esc(cta.href)}">${esc(cta.text)}</a>` : ""}</div>`;
+}
+
+let notFilter = "all";
+function renderNotices(){
+  const rows = NOTICES
+    .filter(n => notFilter==="all" || n.cat===notFilter)
+    .sort((a,b)=> (b.pinned?1:0)-(a.pinned?1:0) || String(b.date||"").localeCompare(String(a.date||"")));
+
+  $("#noticeList").innerHTML = rows.length ? `<div class="notes">` + rows.map(n=>`
+    <article class="note-item" data-pinned="${n.pinned?1:0}">
+      <div class="note-top">
+        <span class="note-cat" data-c="${esc(n.cat)}">${esc(n.cat)}</span>
+        ${n.date ? `<time class="note-date" datetime="${esc(n.date)}">${fmtDate(n.date)}</time>` : ""}
+        ${n.pinned ? `<span class="note-pin">Pinned</span>` : ""}
+      </div>
+      <h3>${esc(n.title)}</h3>
+      <p>${esc(n.body)}</p>
+      ${n.link ? `<a class="btn btn-ghost btn-sm" href="${esc(href(n.link.href))}" data-route="${esc(n.link.href)}">${esc(n.link.text)}</a>` : ""}
+    </article>`).join("") + `</div>`
+  : emptyState("No notices in this category yet.",
+      "New notices appear here as soon as the office issues them. For anything urgent, call reception on ",
+      {href:"tel:+92937801321", text:"0937 801321"});
+}
+
+/* the top strip always carries the newest notice */
+function renderNoticeBand(){
+  const top = [...NOTICES].sort((a,b)=>
+    (b.pinned?1:0)-(a.pinned?1:0) || String(b.date||"").localeCompare(String(a.date||"")))[0];
+  if(!top) return;
+  $("#noticeText").textContent = top.title + (top.date ? " · " + fmtDate(top.date) : "");
+  const a = $("#noticeBandLink");
+  if(a && top.link){
+    a.textContent = top.link.text + " →";
+    a.setAttribute("href", href(top.link.href));
+    a.dataset.route = top.link.href;
+  }
+}
+
+function renderResults(){
+  const s = RESULTS.summary || [], t = RESULTS.toppers || [];
+  $("#resultSummary").innerHTML = s.length ? `
+    <div class="tbl-scroll"><table class="tbl">
+      <thead><tr><th>Year</th><th>Examination</th><th>Appeared</th><th>Passed</th><th>A1 grades</th><th>Note</th></tr></thead>
+      <tbody>${s.map(r=>`<tr>
+        <td class="num">${esc(r.year)}</td><td>${esc(r.exam)}</td>
+        <td class="num">${esc(r.appeared||"—")}</td><td class="num">${esc(r.passed||"—")}</td>
+        <td class="num">${esc(r.a1||"—")}</td><td>${esc(r.note||"")}</td></tr>`).join("")}
+      </tbody></table></div>`
+  : emptyState("The result summary has not been published yet.",
+      "Year-wise figures will appear here as soon as the board results arrive. For earlier results, contact the college office.");
+
+  $("#resultToppers").innerHTML = t.length ? `
+    <div class="tbl-scroll"><table class="tbl">
+      <thead><tr><th>Name</th><th>Class</th><th>Marks</th><th>Position</th><th>Year</th></tr></thead>
+      <tbody>${t.map(r=>`<tr>
+        <td><b>${esc(r.name)}</b></td><td>${esc(r.cls)}</td>
+        <td class="num">${esc(r.marks||"—")}</td><td>${esc(r.position||"")}</td>
+        <td class="num">${esc(r.year||"")}</td></tr>`).join("")}
+      </tbody></table></div>`
+  : emptyState("Position holders have not been listed yet.",
+      "Names and marks will be published here once the office has confirmed them.");
+}
+
+function renderFees(){
+  const filled = FEES.rows.some(r => r.admission || r.tuition);
+  $("#feeTable").innerHTML = filled ? `
+    <div class="tbl-scroll"><table class="tbl">
+      <caption>${esc(FEES.note)}</caption>
+      <thead><tr><th>Class</th><th>Admission fee (${esc(FEES.currency)})</th><th>Monthly tuition (${esc(FEES.currency)})</th></tr></thead>
+      <tbody>${FEES.rows.map(r=>`<tr>
+        <td>${esc(r.cls)}</td>
+        ${r.admission ? `<td class="num">${esc(r.admission)}</td>` : `<td class="pending">Ask the office</td>`}
+        ${r.tuition   ? `<td class="num">${esc(r.tuition)}</td>`   : `<td class="pending">Ask the office</td>`}
+      </tr>`).join("")}</tbody></table></div>`
+  : emptyState("Class-wise fee amounts are not published on the website yet.",
+      "For fees and admission dues, please ask the accounts office on ",
+      {href:"tel:+92937801321", text:"0937 801321"});
+}
+
+function renderBooks(){
+  $("#bookTable").innerHTML = BOOKS.rows.length ? `
+    <div class="tbl-scroll"><table class="tbl">
+      <caption>${esc(BOOKS.note)}</caption>
+      <thead><tr><th>Class</th><th>Subjects / books</th><th>Download</th></tr></thead>
+      <tbody>${BOOKS.rows.map(r=>`<tr>
+        <td><b>${esc(r.cls)}</b></td><td>${esc(r.subjects||"—")}</td>
+        <td>${r.pdf ? `<a href="${esc(r.pdf)}" download>PDF</a>` : "—"}</td></tr>`).join("")}
+      </tbody></table></div>`
+  : `<p>${esc(BOOKS.note)}</p>` + emptyState("The class-wise list is not online yet.",
+      "A printed list is available from the office with the prospectus.");
+}
+
+function renderUniform(){
+  $("#uniformTable").innerHTML = UNIFORM.rows.length ? `
+    <div class="tbl-scroll" style="margin-top:.8rem"><table class="tbl">
+      <thead><tr><th>Section</th><th>Summer</th><th>Winter</th></tr></thead>
+      <tbody>${UNIFORM.rows.map(r=>`<tr>
+        <td><b>${esc(r.section)}</b></td><td>${esc(r.summer||"—")}</td><td>${esc(r.winter||"—")}</td>
+      </tr>`).join("")}</tbody></table>
+      <p class="form-note" style="padding:0 1.1rem 1rem;margin:0">${esc(UNIFORM.note)}</p></div>`
+  : `<p class="form-note" style="margin:0">${esc(UNIFORM.note)}</p>`;
+}
+
+function renderGallery(){
+  const grid = $("#galGrid");
+  if(!grid) return;
+  grid.innerHTML = GALLERY.map((g,i)=>`
+    <figure data-i="${i}">
+      <img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy" decoding="async">
+      <figcaption>${esc(g.caption)}</figcaption>
+    </figure>`).join("");
+
+  // a missing file leaves its frame as an empty placeholder
+  $$("#galGrid img").forEach(img=>{
+    img.addEventListener("error", ()=>{
+      const fig = img.closest("figure");
+      fig.classList.add("is-empty");
+      fig.removeAttribute("data-i");
+      fig.innerHTML = esc(fig.querySelector("figcaption")?.textContent || img.alt);
+    });
+  });
+}
+/* The hero photograph. With no photograph the whole band goes away.
+   There was a crest fallback here, but it only repeated the logo and
+   name already in the header. Empty space beats that. */
+function renderHeroPhoto(){
+  const fig = $("#heroPhoto"), img = $("#heroPhotoImg"), hero = $("#hero");
+  if(!fig || !img || !hero) return;
+  // No photograph, or a broken one: back to the plain light hero.
+  const drop = ()=>{ hero.classList.remove("has-photo"); fig.remove(); };
+
+  // The src and the has-photo class are already set by the small inline
+  // script next to the markup, so that the hero is correct at the first
+  // paint. All that is left here is the failure case and the extras.
+  if(!CONFIG.heroPhoto){ drop(); return; }
+  if(img.complete && img.naturalWidth === 0){ drop(); return; }
+  img.addEventListener("error", drop, { once:true });
+
+  // the slow drift and a video are alternatives, never both at once
+  if(CONFIG.heroVideo && allowHeroVideo()){ attachHeroVideo(fig); return; }
+  if(CONFIG.heroMotion && !prefersReducedMotion()) fig.classList.add("has-motion");
+}
+
+/* Video only when it is worth what it costs. Many parents in Rustam
+   are on mobile data, and a 3-5 MB clip is thirty times the weight of
+   this entire website. */
+/* Safe media query. If matchMedia is missing an unguarded call throws
+   and takes the whole startup routine down with it — faculty list,
+   notices, forms and all — for the sake of a decorative feature.
+   Missing support just means "no". */
+function mq(query){
+  try{ return !!(window.matchMedia && window.matchMedia(query).matches); }
+  catch{ return false; }
+}
+const prefersReducedMotion = ()=> mq("(prefers-reduced-motion:reduce)");
+
+function allowHeroVideo(){
+  // 1. the visitor has turned motion off system-wide
+  if(prefersReducedMotion()) return false;
+
+  const c = navigator.connection;
+  if(c){
+    // 2. the browser's Data Saver is on
+    if(c.saveData) return false;
+    // 3. the connection is 2G or slow 3G
+    if(/^(slow-2g|2g|3g)$/.test(c.effectiveType || "")) return false;
+  }
+  // 4. a small screen — on a phone the poster is enough
+  if(mq("(max-width:820px)")) return false;
+
+  return true;
+}
+
+function attachHeroVideo(fig){
+  const v = document.createElement("video");
+  v.src = CONFIG.heroVideo;
+  v.poster = CONFIG.heroPhoto;      // load hone tak wahi tasveer
+  v.muted = true;                   // silent, or the browser refuses to autoplay
+  v.loop = true;
+  v.playsInline = true;
+  v.autoplay = true;
+  v.preload = "metadata";
+  v.setAttribute("aria-hidden","true");   // decoration, not information
+  v.tabIndex = -1;
+  // only reveal the video once it is genuinely playing, otherwise a
+  // blank black box shows
+  v.addEventListener("playing", ()=> fig.classList.add("has-video"), { once:true });
+  v.addEventListener("error", ()=> v.remove(), { once:true });
+  fig.appendChild(v);
+}
+
+function openLightbox(i){
+  const g = GALLERY[i]; if(!g) return;
+  $("#lbImg").src = g.src; $("#lbImg").alt = g.caption;
+  $("#lbCap").textContent = g.caption;
+  $("#lightbox").classList.add("open");
+  $("#lbClose").focus();
+}
+function closeLightbox(){
+  $("#lightbox").classList.remove("open");
+  $("#lbImg").src = "";
+}
+
+/* ============================================================
+   validation
+   ============================================================ */
+function markField(input, ok){
+  const f = input.closest(".field");
+  if(f) f.classList.toggle("invalid", !ok);
+  return ok;
+}
+function validate(scope){
+  let ok = true, first = null;
+  $$("input,select,textarea", scope).forEach(el=>{
+    if(el.type==="checkbox") return;
+    let good = true;
+    const v = el.value.trim();
+    if(el.hasAttribute("required") && !v) good = false;
+    if(good && v && el.id.endsWith("_phone")) good = /^03\d{9}$/.test(v.replace(/\D/g,""));
+    if(good && v && el.type==="email") good = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    markField(el, good);
+    if(!good){ ok=false; first = first || el; }
+  });
+  if(first){ first.focus(); first.scrollIntoView({block:"center",behavior:"smooth"}); }
+  return ok;
+}
+function collect(form){
+  const out = {};
+  $$("input,select,textarea", form).forEach(el=>{
+    if(el.type==="checkbox" || !el.name) return;
+    if(el.value.trim()) out[el.name] = el.value.trim();
+  });
+  return out;
+}
+/* ------------------------------------------------------------
+   Getting submissions through to the office.
+
+   If the network fails, or no endpoint is configured yet,
+   the submission is kept in a localStorage queue and sent again the
+   next time the page opens. The printed slip is still the record of
+   truth — it is simply no longer the only one.
+   ------------------------------------------------------------ */
+const QUEUE_KEY = "sca_pending_submissions";
+
+function readQueue(){
+  try{ return JSON.parse(localStorage.getItem(QUEUE_KEY) || "[]"); }
+  catch{ return []; }
+}
+function writeQueue(q){
+  try{ localStorage.setItem(QUEUE_KEY, JSON.stringify(q.slice(-50))); }
+  catch{ /* private mode or quota — the slip can still be printed */ }
+}
+function post(payload){
+  // no-cors: Apps Script sends no cross-origin reply, so the response
+  // cannot be read — a network failure is still caught.
+  return fetch(CONFIG.formEndpoint, {
+    method : "POST",
+    mode   : "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body   : JSON.stringify(payload)
+  });
+}
+function sendToEndpoint(payload){
+  if(!CONFIG.formEndpoint){
+    // no endpoint yet — still queue it, so that older entries go out
+    // as soon as one is configured
+    writeQueue([...readQueue(), payload]);
+    return;
+  }
+  post(payload).catch(()=> writeQueue([...readQueue(), payload]));
+}
+function flushQueue(){
+  if(!CONFIG.formEndpoint) return;
+  const q = readQueue();
+  if(!q.length) return;
+  writeQueue([]);
+  q.forEach(p => post(p).catch(()=> writeQueue([...readQueue(), p])));
+}
+function waLink(text){ return "https://wa.me/"+CONFIG.officeWhatsApp+"?text="+encodeURIComponent(text); }
+
+/* ============================================================
+   admission application
+   ============================================================ */
+let applyData = null;
+function showStep(n){
+  $$(".astep").forEach(s=>s.hidden = (+s.dataset.step !== n));
+  $$("#applySteps div").forEach((d,i)=>d.dataset.on = (i < n) ? "1" : "0");
+  $("#applyShell").scrollIntoView({block:"start",behavior:"smooth"});
+}
+function buildReview(){
+  const d = collect($("#formApply"));
+  $("#applyReview").innerHTML = Object.entries(d)
+    .map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+}
+function applySlip(d, no){
+  return `
+  <div class="slip-head">
+    <img src="${CONFIG.logo}" alt="" onerror="this.style.display='none'">
+    <div>
+      <span class="slip-kind">Admission application receipt</span>
+      <p class="slip-title">Sudhum Children Academy<br>&amp; Science College, Rustam</p>
+    </div>${SEAL}
+  </div>
+  <p class="slip-no"><small>Reference number</small>${no}</p>
+  <dl class="slip-grid">
+    <div><dt>Student</dt><dd>${esc(d["Student name"])}</dd></div>
+    <div><dt>Father</dt><dd>${esc(d["Father name"])}</dd></div>
+    <div><dt>Class applied for</dt><dd>${esc(d["Class applied for"])}</dd></div>
+    <div><dt>Campus</dt><dd>${esc(d["Campus"])}</dd></div>
+    <div><dt>Date of birth</dt><dd>${esc(d["Date of birth"])}</dd></div>
+    <div><dt>Hostel</dt><dd>${esc(d["Hostel"]||"No")}</dd></div>
+    <div><dt>Guardian</dt><dd>${esc(d["Guardian"])} (${esc(d["Relationship"])})</dd></div>
+    <div><dt>Mobile</dt><dd>${esc(d["Mobile"])}</dd></div>
+    <div><dt>Applied on</dt><dd>${today()}</dd></div>
+  </dl>
+  <div class="slip-rules">
+    <b>Bring to the college office within the notified dates:</b> this slip, the student's B-Form,
+    the last result card or school leaving certificate, two photographs, and the guardian's CNIC copy.
+    Admission is confirmed only after the interview and payment of dues within two working days.
+    Merit lists are displayed on the college notice board.
+  </div>
+  <div class="slip-sign"><span>Guardian's signature</span><span>Office stamp</span></div>`;
+}
+function testSlipHTML(d, no){
+  return `
+  <div class="slip-head">
+    <img src="${CONFIG.logo}" alt="" onerror="this.style.display='none'">
+    <div>
+      <span class="slip-kind">${esc(CONFIG.test.session)} · Roll number slip</span>
+      <p class="slip-title">Sudhum Children Academy<br>&amp; Science College, Rustam</p>
+    </div>${SEAL}
+  </div>
+  <p class="slip-no"><small>Roll number</small>${no}</p>
+  <dl class="slip-grid">
+    <div><dt>Candidate</dt><dd>${esc(d["Candidate"])}</dd></div>
+    <div><dt>Father</dt><dd>${esc(d["Father name"])}</dd></div>
+    <div><dt>Test for class</dt><dd>${esc(d["Class"])}</dd></div>
+    <div><dt>Test centre</dt><dd>${esc(d["Centre"])}</dd></div>
+    <div><dt>Test date</dt><dd>${esc(CONFIG.test.date)}</dd></div>
+    <div><dt>Reporting time</dt><dd>${esc(CONFIG.test.reporting)}</dd></div>
+    <div><dt>Duration</dt><dd>${esc(CONFIG.test.duration)}</dd></div>
+    <div><dt>Guardian's mobile</dt><dd>${esc(d["Mobile"])}</dd></div>
+  </dl>
+  <div class="slip-rules">
+    <b>Venue:</b> ${esc(CONFIG.test.venue)}.<br>
+    Bring this slip, the candidate's B-Form and the last result card. Candidates without a roll number slip
+    are not seated. No mobile phones or calculators in the hall. The merit list is displayed on the college
+    notice board within 24 hours of the test.
+  </div>
+  <div class="slip-sign"><span>Candidate's signature</span><span>Superintendent</span></div>`;
+}
+
+/* ============================================================
+   wire everything up
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", ()=>{
+  $("#yr").textContent = new Date().getFullYear();
+
+  renderHeroPhoto();
+  renderNoticeBand();
+  renderNotices();
+  renderResults();
+  renderFees();
+  renderBooks();
+  renderUniform();
+  renderGallery();
+  renderFaculty();
+
+  wireLinks();   // tag links with their routes (honouring cleanUrls)
+  route();       // then set the active page, title and meta
+  initReveal();  // with the DOM built, start the animations
+  flushQueue();  // resend anything that failed to go out last time
+
+  // on scroll: shadow under the header, smaller crest
+  const head = $(".site-head");
+  // Two thresholds, not one. A single threshold means any scroll that
+  // lands exactly on it can be flipped back and forth by a stray pixel
+  // — from a trackpad, a bounce, or the browser adjusting the scroll
+  // itself — and the header strobes. It has to fall well below 8 to
+  // turn the shadow off again.
+  const onScroll = ()=>{
+    const y = window.scrollY;
+    if(y > 24) head.classList.add("is-stuck");
+    else if(y < 8) head.classList.remove("is-stuck");
+  };
+  window.addEventListener("scroll", onScroll, { passive:true });
+  onScroll();
+
+  // notice filters
+  $$("[data-not]").forEach(b=>b.addEventListener("click", ()=>{
+    notFilter = b.dataset.not;
+    $$("[data-not]").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    renderNotices();
+    wireLinks();
+    revealScan();   // naye notice cards bhi animate hon
+  }));
+
+  // gallery lightbox
+  $("#galGrid").addEventListener("click", e=>{
+    const fig = e.target.closest("figure[data-i]");
+    if(fig) openLightbox(+fig.dataset.i);
+  });
+  $("#lbClose").addEventListener("click", closeLightbox);
+  $("#lightbox").addEventListener("click", e=>{ if(e.target.id==="lightbox") closeLightbox(); });
+
+  // logo fallback if the school server blocks hotlinking
+  $("#brandLogo").addEventListener("error", function(){
+    this.outerHTML = '<span style="width:52px;height:52px;flex:none;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--f-mono);font-size:.8rem;font-weight:600">SCA</span>';
+  });
+
+  // mobile drawer
+  $("#burger").addEventListener("click", ()=>{
+    const open = $("#nav").classList.toggle("open");
+    $("#burger").setAttribute("aria-expanded", open);
+  });
+  initMenus();
+
+  document.addEventListener("keydown", e=>{
+    if(e.key !== "Escape") return;
+    const openItem = $(".nav-item.open");
+    closeMenus();
+    $("#nav").classList.remove("open");
+    $("#burger").setAttribute("aria-expanded","false");
+    closeLightbox();
+    // after Escape, return focus to the button the menu opened from
+    if(openItem) $(".nav-btn", openItem)?.focus();
+  });
+
+  // faculty controls
+  $("#facSearch").addEventListener("input", renderFaculty);
+  $$("[data-fac]").forEach(b=>b.addEventListener("click", ()=>{
+    facFilter = b.dataset.fac;
+    $$("[data-fac]").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    renderFaculty();
+  }));
+
+  // admission — step buttons
+  $$("[data-go]").forEach(b=>b.addEventListener("click", ()=>{
+    const to = +b.dataset.go;
+    const from = +b.closest(".astep").dataset.step;
+    if(to > from && !validate(b.closest(".astep"))) return;
+    if(to === 3) buildReview();
+    showStep(to);
+  }));
+
+  // admission — submit
+  $("#formApply").addEventListener("submit", e=>{
+    e.preventDefault();
+    if(!$("#ap_agree").checked){ $("#ap_agreeErr").style.display="block"; return; }
+    $("#ap_agreeErr").style.display="none";
+    const d = collect($("#formApply"));
+    const no = ref("SCA");
+    applyData = {ref:no, type:"Admission application", ...d};
+    sendToEndpoint(applyData);
+    $("#applySlip").innerHTML = applySlip(d, no);
+    $("#applyShell").hidden = true;
+    $("#applyResult").hidden = false;
+    $("#applyResult").scrollIntoView({block:"start",behavior:"smooth"});
+    toast("Application recorded — reference " + no);
+  });
+  $("#applyWa").addEventListener("click", ()=>{
+    const lines = Object.entries(applyData).map(([k,v])=>k+": "+v).join("\n");
+    window.open(waLink("Admission application\n"+lines), "_blank");
+  });
+  $("#applyAgain").addEventListener("click", ()=>{
+    $("#formApply").reset(); $$(".field").forEach(f=>f.classList.remove("invalid"));
+    $("#applyResult").hidden = true; $("#applyShell").hidden = false; showStep(1);
+  });
+
+  // entry test
+  $("#formTest").addEventListener("submit", e=>{
+    e.preventDefault();
+    if(!validate($("#formTest"))) return;
+    if(!$("#et_agree").checked){ $("#et_agreeErr").style.display="block"; return; }
+    $("#et_agreeErr").style.display="none";
+    const d = collect($("#formTest"));
+    const no = ref("ET");
+    window.__testData = {roll:no, type:"Entry test registration", ...d};
+    sendToEndpoint(window.__testData);
+    $("#testSlip").innerHTML = testSlipHTML(d, no);
+    $("#testShell").hidden = true;
+    $("#testResult").hidden = false;
+    $("#testResult").scrollIntoView({block:"start",behavior:"smooth"});
+    toast("Roll number issued — " + no);
+  });
+  $("#testWa").addEventListener("click", ()=>{
+    const lines = Object.entries(window.__testData).map(([k,v])=>k+": "+v).join("\n");
+    window.open(waLink("Entry test registration\n"+lines), "_blank");
+  });
+  $("#testAgain").addEventListener("click", ()=>{
+    $("#formTest").reset(); $$(".field").forEach(f=>f.classList.remove("invalid"));
+    $("#testResult").hidden = true; $("#testShell").hidden = false;
+  });
+
+  // enquiry form
+  $("#formEnquiry").addEventListener("submit", e=>{
+    e.preventDefault();
+    if(!validate($("#formEnquiry"))) return;
+    const d = collect($("#formEnquiry"));
+    sendToEndpoint({type:"Enquiry", ...d});
+    window.open(waLink(`Enquiry from ${d.name} (${d.phone})\n\n${d.message}`), "_blank");
+  });
+  $("#eqMail").addEventListener("click", ()=>{
+    if(!validate($("#formEnquiry"))) return;
+    const d = collect($("#formEnquiry"));
+    location.href = `mailto:${CONFIG.officeEmail}?subject=${encodeURIComponent("Website enquiry — "+d.name)}&body=${encodeURIComponent(d.message+"\n\n— "+d.name+", "+d.phone)}`;
+  });
+});
+</script>
+</body>
+</html>

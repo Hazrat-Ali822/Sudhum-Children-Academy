@@ -1,0 +1,8 @@
+# Not part of the website — the Apps Script source and its guide are for
+# the office to paste into Google, not for visitors to download.
+server/
+
+# Apache-only, and Vercel does not read it. vercel.json is the equivalent.
+.htaccess
+
+README.md

@@ -1,0 +1,7 @@
+# The office edits index.html on Windows. Without this, every save can
+# rewrite all 3000 lines as a line-ending change and bury the real edit.
+* text=auto eol=lf
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
